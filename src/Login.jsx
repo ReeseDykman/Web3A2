@@ -1,0 +1,39 @@
+import { useState } from "react";
+
+const Login = (props) => {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+
+    const handleOnChange = (e) => {
+        if (e.target.name === "username") {
+            setUsername(e.target.value);
+        } else {
+            setPassword(e.target.value);
+        }
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        if ((username.toLowerCase() === "reese" || username.toLowerCase() === "christopher") && (password.toLowerCase() === "password")) {
+            props.handleLogin(true);
+        } else {
+            setError("Invalid credentials. Hint: use one of the contributers' names as the username and 'password' as the password (case insensitive).");
+        }
+    };
+
+    return(
+        <form onSubmit={handleSubmit} className="container bg-white shadow-md rounded px-10 pt-6 pb-8 pt-8 mb-4 flex flex-col max-w-xs mx-auto">
+            <h2 className="text-2xl font-bold mb-4">Login</h2>
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">Username:</label>
+            <input type="text" name="username" value={username} onChange={handleOnChange} className="shadow appearance-none border rounded w-full sm:w-48 md:w-64 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">Password:</label>
+            <input type="text" name="password" value={password} onChange={handleOnChange} className="shadow appearance-none border rounded w-full sm:w-48 md:w-64 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+            <span className="text-red-500 text-xs italic">{error}</span>
+            <input type="submit"/>
+        </form>
+    )
+
+};
+
+export default Login;

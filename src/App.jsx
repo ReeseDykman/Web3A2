@@ -1,12 +1,27 @@
-//import { useState } from 'react'
+import { useState } from 'react'
 import './App.css'
+import Login from './Login.jsx'
 
 function App() {
 
+  const [loggedIn, setLoggedIn] = useState(false)
+
+  const handleLogin = (loginState) => {
+    setLoggedIn(loginState)
+  }
+
+  console.log(loggedIn)
+
+  // if(loggedIn) {
+  //   return (
+  //     PLACEHOLDER
+  //   )
+  // }
+
   return (
-      <h1 className="text-3xl font-bold text-yellow-600 m-4">
-        Hello world!
-      </h1>
+    <main className="bg-gray-100 max-w-screen min-h-screen">
+      <Login handleLogin={handleLogin} />
+    </main>
   )
 }
 
