@@ -36,7 +36,7 @@ const Login = (props) => {
             <input type="text" name="password" value={password} onChange={handleOnChange} className="shadow appearance-none border rounded w-full sm:w-48 md:w-64 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
             <div className="md:flex sm:flex-columns items-center md:justify-around sm:justify-between md:pt-8 md:pb-4 md:pb-0 sm:pb-0">
                 <button type="button" name="loginButton" onClick={handleSubmit} className="mb-7 mt-7 bg-blue-200 hover:bg-blue-300 border-2 px-8 pt-1 pb-1">Login</button>
-                <button type="button" name="registerButton" onClick={handleSubmit} className="bg-blue-200 hover:bg-blue-300 border-2 px-8 pt-1 pb-1">Register</button>
+                <button type="button" name="registerButton" onClick={handleSubmit} className="mb-7 mt-7 bg-blue-200 hover:bg-blue-300 border-2 px-8 pt-1 pb-1">Register</button>
             </div>
             <br/>
             <span className="text-red-500 text-xs italic">{error}</span>
