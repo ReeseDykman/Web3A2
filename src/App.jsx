@@ -1,30 +1,29 @@
-import { useState } from 'react'
-import './App.css'
-import Login from './components/Login.jsx'
+import { useState } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import './App.css';
+import Login from './components/Login.jsx';
 
 function App() {
-
-  const [loggedIn, setLoggedIn] = useState(false)
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const handleLogin = (loginState) => {
-    setLoggedIn(loginState)
-  }
+    setLoggedIn(loginState);
+  };
 
-  console.log(loggedIn)
-
-  // if(loggedIn) {
-  //   return (
-  //     PLACEHOLDER
-  //   )
-  // }
+  console.log(loggedIn);
 
   return (
     <main className="bg-gray-100 max-w-screen min-h-screen">
-      <h1 className="text-4xl text-center font-bold p-8">Art Dashboard</h1>
-      <Login handleLogin={handleLogin} />
-      <p className="text-center text-gray-500 text-xs">Image Credit: PLACEHOLDER</p>
+      <Routes>
+        <Route path="/login" element={loggedIn ? <Navigate to="/paintings"/> : <Login handleLogin={handleLogin} />}/>
+        <Route path="/galleries" element={loggedIn ? (<h1 className="text-4xl text-center font-bold p-8">Galleries</h1>) : (<Navigate to="/login" />)}/>
+        <Route path="/artists" element={loggedIn ? (<h1 className="text-4xl text-center font-bold p-8">Artists</h1>) : (<Navigate to="/login" />)}/>
+        <Route path="/genres" element={loggedIn ? (<h1 className="text-4xl text-center font-bold p-8">Genres</h1>) : (<Navigate to="/login" />)}/>
+        <Route path="/paintings" element={loggedIn ? (<h1 className="text-4xl text-center font-bold p-8">Paintings</h1>) : (<Navigate to="/login" />)}/>
+        <Route path="*" element={<Navigate to="/login" />}/>
+      </Routes>
     </main>
-  )
+  );
 }
 
-export default App
+export default App;
