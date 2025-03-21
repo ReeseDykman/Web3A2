@@ -20,7 +20,9 @@ function App() {
 
   return (
     <main className="bg-gray-100 max-w-screen min-h-screen">
+      <h1 className="text-4xl text-center font-bold p-8">Art Dashboard</h1>
       <Login handleLogin={handleLogin} />
+      <p className="text-center text-gray-500 text-xs">Image Credit: PLACEHOLDER</p>
     </main>
   )
 }
