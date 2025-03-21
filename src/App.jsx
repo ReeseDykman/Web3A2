@@ -10,13 +10,11 @@ function App() {
     setLoggedIn(loginState);
   };
 
-  const rootName = '/Web3A2';
-
   console.log(loggedIn);
 
   return (
     <main className="bg-gray-100 max-w-screen min-h-screen">
-      <Routes basename={rootName}>
+      <Routes>
         <Route path="/" element={<Navigate to="/login"/>}/>
         <Route path="/login" element={loggedIn ? <Navigate to="/paintings"/> : <Login handleLogin={handleLogin} />}/>
         <Route path="/galleries" element={loggedIn ? (<h1 className="text-4xl text-center font-bold p-8">Galleries</h1>) : (<Navigate to="/login" />)}/>
