@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 import Login from './components/Login.jsx';
+import Navbar from './components/Header.jsx';
+
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -14,6 +16,7 @@ function App() {
 
   return (
     <main className="bg-gray-100 max-w-screen min-h-screen">
+ {loggedIn && <Navbar />}      
       <Routes>
         <Route path="/" element={<Navigate to="/login"/>}/>
         <Route path="/login" element={loggedIn ? <Navigate to="/paintings"/> : <Login handleLogin={handleLogin} />}/>
