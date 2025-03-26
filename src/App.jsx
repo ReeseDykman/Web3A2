@@ -4,6 +4,7 @@ import './App.css';
 import Login from './components/Login.jsx';
 import Navbar from './components/Header.jsx';
 import GenreView from './components/GenreView.jsx';
+import supabase from "./components/supabaseClient.js";
 
 
 
