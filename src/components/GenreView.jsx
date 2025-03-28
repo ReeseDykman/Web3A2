@@ -1,36 +1,23 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import supabase from "./supabaseClient.js";
 import GenreList from "./GenreList.jsx";
 import GenreScreen from "./GenreScreen.jsx";
-
+import { GenresContext } from "../App.jsx";
+import { PaintingGenresContext } from "../App.jsx";
+import { PaintingsContext } from "../App.jsx";
 
 function GenreView(props) {
-  const [genres, setGenre] = useState([]);
-  const [paintingGenres, setPaintingGenres]= useState([]);
-  const [paintings, setPaintings] = useState([]);
+  const { genres } = useContext(GenresContext);
+  const { paintingGenres } = useContext(PaintingGenresContext);
+  const { paintings } = useContext(PaintingsContext);
+  // const [genres, setGenre] = useState([]);
+  // const [paintingGenres, setPaintingGenres]= useState([]);
+  // const [paintings, setPaintings] = useState([]);
   const [displayPaintings, setDisplayPaintings] = useState([]);
   const [displayGenre, setDisplayGenre] = useState([]);
 
 
-  async function getPaintingGenres() {
-    const { data } = await supabase.from("PaintingGenres").select();
-    setPaintingGenres(data);
-  }
-
-  useEffect(() => {
-    getGenre();
-    getPaintingGenres();
-    getPaintings()
-  }, []);
-
-  async function getGenre() {
-    const { data } = await supabase.from("Genres").select();
-     setGenre(data);
-  }
-  async function getPaintings() {
-    const { data } = await supabase.from("Paintings").select();
-    setPaintings(data);
-  }
+ 
   const clickedGenre = (props) => {
     const matchedGenre = paintingGenres.filter((row) => (row.genreId == props));
 
@@ -46,8 +33,7 @@ function GenreView(props) {
       tempPaintings.push(foundPainting);
 
     }
-    console.log(tempGenre)
-    console.log(tempPaintings)
+   
     setDisplayPaintings(tempPaintings);
     setDisplayGenre(tempGenre)
 
