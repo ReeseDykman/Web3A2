@@ -1,6 +1,10 @@
 import GenreListItem from "./GenreListItem.jsx";
+import {useContext} from "react";
+import { GenresContext } from "../App.jsx";
+
 
 const GenreList = (props) => {
+     const { genres } = useContext(GenresContext);
     // Print each item in the props array
     // Sort alphabetically by name
     // When the user clicks the name of a specific list, you will need to handle the click above
@@ -11,7 +15,7 @@ const GenreList = (props) => {
     //2. Sort the array
 
 
-    props.data.sort((a, b) => {
+    genres.sort((a, b) => {
         if (a.genreName > b.genreName) {
             return 1;
         }
@@ -24,7 +28,7 @@ const GenreList = (props) => {
     return (
 
 
-        <li>{props.data.map(g => <GenreListItem data={g} id={g.genreId} key={g.genreId} update={props.update}/>)}</li>
+        <li>{genres.map(g => <GenreListItem data={g} id={g.genreId} key={g.genreId} update={props.update}/>)}</li>
 
 
     )
