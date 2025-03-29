@@ -48,7 +48,13 @@ function App() {
 
   async function getPaintings() {
     if (localStorage.getItem("paintings") == null) {
-      const { data } = await supabase.from("Paintings").select();
+      const { data, error } = await supabase
+                        .from("Paintings")
+                        .select("paintingId,imageFileName,title,shapeId,museumLink,accessionNumber,copyrightText,description,excerpt,yearOfWork,width,height,medium,cost,MSRP,googleLink,googleDescription,wikiLink,jsonAnnotations, Artists!inner(firstName, lastName, nationality, yearOfBirth, yearOfDeath, details, artistLink), Galleries!inner(galleryName,galleryNativeName,galleryCity,galleryAddress,galleryCountry,latitude,longitude,galleryWebSite,flickrPlaceId,yahooWoeId,googlePlaceId)")
+      if (error) {
+        console.error("Error fetching paintings:", error);
+        return;
+      }
       localStorage.setItem("paintings", JSON.stringify(data));
       setPaintings(data);
     } else {

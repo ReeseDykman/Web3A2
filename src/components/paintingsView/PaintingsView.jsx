@@ -1,5 +1,5 @@
 import PaintingsForm from "./PaintingsForm";
-import PaintingsList from "./PaintingsList";
+import PaintingsTable from "./PaintingsTable";
 import { PaintingsContext } from "../../App";
 import { useContext, useState } from "react";
 
@@ -12,15 +12,15 @@ const PaintingsView = () => {
     };
 
     return (
-        <section className="h-full mx-auto p-4 flex flex-col md:flex-row gap-4">
+        <section className="w-full h-full mx-auto p-4 flex flex-col md:flex-row gap-4">
             {/* Paintings Form */}
-            <div className="w-full md:w-1/4 bg-gray-100 shadow-md rounded p-4 h-full">
+            <div className="w-full h-120 md:w-1/4 bg-gray-100 shadow-md rounded p-4">
                 <PaintingsForm handleFilter={handleFilter} />
             </div>
 
             {/* Paintings List */}
-            <div className="flex-1 bg-gray-100 shadow-md rounded p-4 h-full">
-                <PaintingsList paintings={filteredPaintings} />
+            <div className="flex-1 bg-gray-100 shadow-md rounded p-4 h-170 overflow-hidden">
+                <PaintingsTable paintings={filteredPaintings} />
             </div>
         </section>
     );
