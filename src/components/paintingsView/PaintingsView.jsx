@@ -19,7 +19,7 @@ const PaintingsView = () => {
             </div>
 
             {/* Paintings List */}
-            <div className="flex-1 bg-gray-100 shadow-md rounded p-4 h-170 overflow-hidden">
+            <div className="flex-1 bg-gray-100 shadow-md rounded p-4 h-165 overflow-hidden">
                 <PaintingsTable paintings={filteredPaintings} />
             </div>
         </section>
