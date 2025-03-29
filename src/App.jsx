@@ -136,7 +136,7 @@ function App() {
 
 
 
-                  <main className="bg-gray-100 max-w-screen min-h-screen flex flex-col justify-stretch">
+                  <main className="bg-gray-100 max-w-screen h-screen flex flex-col">
 
                     {loggedIn && <Navbar />}
                     <Routes>
@@ -153,6 +153,11 @@ function App() {
                           <Navigate to="/login" />)} />
                       <Route path="*" element={<Navigate to="/login" />} />
                     </Routes>
+                    {loggedIn && (
+                      <footer className="bg-gray-800 text-white text-center py-4 mt-auto">
+                        <p>&copy; 2025 Reese Dykman & Christopher Nottingham.</p>
+                      </footer>
+                    )}
                   </main>
                 </ErasContext.Provider>
 
