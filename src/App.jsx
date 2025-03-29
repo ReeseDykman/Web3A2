@@ -136,7 +136,7 @@ function App() {
 
 
 
-                  <main className="bg-gray-100 max-w-screen min-h-screen">
+                  <main className="bg-gray-100 max-w-screen min-h-screen flex flex-col justify-stretch">
 
                     {loggedIn && <Navbar />}
                     <Routes>
