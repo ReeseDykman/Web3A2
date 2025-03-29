@@ -149,7 +149,7 @@ function App() {
                           <Navigate to="/login" />)} />
                       <Route path="/genres" element={loggedIn ? <GenreView /> : <Navigate to="/login" />} />
                       <Route path="/paintings"
-                        element={loggedIn ? (<h1 className="text-4xl text-center font-bold p-8">Paintings</h1>) : (
+                        element={loggedIn ? <PaintingsView /> : (
                           <Navigate to="/login" />)} />
                       <Route path="*" element={<Navigate to="/login" />} />
                     </Routes>
