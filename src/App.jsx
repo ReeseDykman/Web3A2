@@ -4,7 +4,7 @@ import './App.css';
 import Login from './components/Login.jsx';
 import Navbar from './components/Header.jsx';
 import GenreView from './components/GenreView.jsx';
-import GalleryView from "./components/GalleryView.jsx";
+import GalleryView from './components/galleryView/GalleryView.jsx';
 import supabase from './components/supabaseClient.js';
 
 export const ArtistsContext = createContext();
@@ -13,7 +13,10 @@ export const PaintingsContext = createContext();
 export const GalleriesContext = createContext();
 export const PaintingGenresContext = createContext();
 export const ErasContext = createContext();
-export const FavoritesContext = createContext();
+
+export const GalleriesFavoritesContext = createContext();
+export const ArtistsFavoritesContext = createContext();
+export const PaintingsFavoritesContext = createContext();
 import PaintingsView from './components/paintingsView/PaintingsView.jsx';
 
 function App() {
@@ -30,7 +33,12 @@ function App() {
   const [paintingGenres, setPaintingGenres] = useState([]);
   const [eras, setEras] = useState([]);
   const [paintings, setPaintings] = useState([]);
-  const [favorites, setFavorites] = useState([]);
+
+
+
+  const [artistsFavorites, setArtistsFavorites] = useState([]);
+  const [galleryFavorites, setGalleryFavorites] = useState([]);
+  const [paintingsFavorites, setPaintingsFavorites] = useState([]);
 
   async function getPaintingGenres() {
     if (localStorage.getItem('paintingGenres') == null) {
@@ -50,7 +58,7 @@ function App() {
     if (localStorage.getItem("paintings") == null) {
       const { data, error } = await supabase
                         .from("Paintings")
-                        .select("paintingId,imageFileName,title,shapeId,museumLink,accessionNumber,copyrightText,description,excerpt,yearOfWork,width,height,medium,cost,MSRP,googleLink,googleDescription,wikiLink,jsonAnnotations, Artists!inner(firstName, lastName, nationality, yearOfBirth, yearOfDeath, details, artistLink), Galleries!inner(galleryName,galleryNativeName,galleryCity,galleryAddress,galleryCountry,latitude,longitude,galleryWebSite,flickrPlaceId,yahooWoeId,googlePlaceId)")
+                        .select("artistId, paintingId, galleryId,imageFileName,title,shapeId,museumLink,accessionNumber,copyrightText,description,excerpt,yearOfWork,width,height,medium,cost,MSRP,googleLink,googleDescription,wikiLink,jsonAnnotations, Artists!inner(firstName, lastName, nationality, yearOfBirth, yearOfDeath, details, artistLink), Galleries!inner(galleryName,galleryNativeName,galleryCity,galleryAddress,galleryCountry,latitude,longitude,galleryWebSite,flickrPlaceId,yahooWoeId,googlePlaceId)")
       if (error) {
         console.error("Error fetching paintings:", error);
         return;
@@ -102,17 +110,28 @@ function App() {
   }
 
   async function getFavorites() {
-    if (localStorage.getItem("favorites") == null) {
-      const storedFavsData = {
-        galleriesFav: [],
-        artistsFav: [],
-        paintingsFav: []
-      };
-      localStorage.setItem("favorites", JSON.stringify(storedFavsData));
-      setFavorites(storedFavsData);
+    if (localStorage.getItem("galleryFavorites") == null) {
+       localStorage.setItem("galleryFavorites", JSON.stringify([]));
+      setGalleryFavorites([]);
+    } else{
+      setGalleryFavorites(JSON.parse(localStorage.getItem("galleryFavorites")));
+    }
+
+    
+    if (localStorage.getItem("artistsFavorites") == null) {
+      localStorage.setItem("artistsFavorites", JSON.stringify([]));
+      setArtistsFavorites([]);
+    } else {
+      setArtistsFavorites(JSON.parse(localStorage.getItem("artistsFavorites")));
+    }
+
+    if (localStorage.getItem("paintingFavorites") == null) {
+      
+      localStorage.setItem("paintingFavorites", JSON.stringify([]));
+      setPaintingsFavorites([]);
 
     } else {
-      setFavorites(JSON.parse(localStorage.getItem("favorites")));
+      setPaintingsFavorites(JSON.parse(localStorage.getItem("paintingFavorites")));
     }
   }
 
@@ -128,13 +147,15 @@ function App() {
 
 
   return (
-    <ArtistsContext.Provider value={{ artists, setArtists }}>
-      <PaintingGenresContext.Provider value={{ paintingGenres, setPaintingGenres }}>
-        <GenresContext.Provider value={{ genres, setGenres }}>
-          <PaintingsContext.Provider value={{ paintings, setPaintings }}>
-            <GalleriesContext.Provider value={{ galleries, setGalleries }}>
-              <FavoritesContext.Provider value={{ favorites, setFavorites }}>
-                <ErasContext.Provider value={{ eras, setEras }}>
+     <ArtistsContext.Provider value={{ artists, setArtists }}>
+          <PaintingGenresContext.Provider value={{ paintingGenres, setPaintingGenres }}>
+            <GenresContext.Provider value={{ genres, setGenres }}>
+              <PaintingsContext.Provider value={{ paintings, setPaintings }}>
+                <GalleriesContext.Provider value={{ galleries, setGalleries }}>
+                  <PaintingsFavoritesContext.Provider value={{ paintingsFavorites, setPaintingsFavorites }}>
+                   <GalleriesFavoritesContext.Provider value={{ galleryFavorites, setGalleryFavorites }}>
+                    <ArtistsFavoritesContext.Provider value={{ artistsFavorites, setArtistsFavorites }}>
+                    <ErasContext.Provider value={{ eras, setEras }}>
 
 
 
@@ -142,7 +163,7 @@ function App() {
 
 
 
-                  <main className="bg-gray-100 max-w-screen h-screen flex flex-col">
+                  <main className="max-w-screen min-h-screen">
 
                     {loggedIn && <Navbar />}
                     <Routes>
@@ -166,8 +187,11 @@ function App() {
                     )}
                   </main>
                 </ErasContext.Provider>
+                </ArtistsFavoritesContext.Provider>
+                  </GalleriesFavoritesContext.Provider>
+                  </PaintingsFavoritesContext.Provider>
 
-              </FavoritesContext.Provider>
+              
             </GalleriesContext.Provider>
           </PaintingsContext.Provider>
         </GenresContext.Provider>
