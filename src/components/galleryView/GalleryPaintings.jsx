@@ -21,6 +21,7 @@ const GalleryPaintings = (props) => {
         if (sortBy === "artistSortButton") {
             sortedPaintings.sort((a, b) => {
                 return a.Artists.firstName.localeCompare(b.Artists.firstName)
+                
             });
         } else if (sortBy === "titleSortButton") {
             sortedPaintings.sort((a, b) => a.title.localeCompare(b.title));

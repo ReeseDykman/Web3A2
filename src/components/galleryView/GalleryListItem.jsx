@@ -4,6 +4,7 @@ const GalleryListItem = (props) => {
     }
 
     return (
+        
        <li className="hover:text-white"> <a onClick={handleClick}>{props.data.galleryName}</a> </li>
     )
 }

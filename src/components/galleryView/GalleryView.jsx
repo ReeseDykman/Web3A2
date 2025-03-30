@@ -28,6 +28,7 @@ console.log(foundGallery);
 
     }
     
+    
     return(   
       <div className="flex gap-6 ">
         <GalleryList update={handleClick} />
