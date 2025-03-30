@@ -1,4 +1,5 @@
 const PaintingsTableRow = (props) => {
+    console.log("PaintingsTableRow", props);
     return(
         <tr className="bg-white w-full h-full">
             <td className="p-5 text-center">{props.painting.imageFileName}</td>

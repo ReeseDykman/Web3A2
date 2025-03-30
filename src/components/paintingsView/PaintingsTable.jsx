@@ -1,6 +1,7 @@
 import PaintingsTableRow from "./PaintingsTableRow.jsx";
 
 const PaintingsTable = (props) => {
+    console.log("PaintingsTable", props.paintings);
     return (
         <div className="h-full overflow-y-auto overflow-x-auto">
             <table className="w-full border-collapse border border-gray-300">
@@ -17,7 +18,7 @@ const PaintingsTable = (props) => {
                 </thead>
                 <tbody className="bg-white">
                     {props.paintings.map((painting) => (
-                        <PaintingsTableRow key={painting.id} painting={painting} />
+                        <PaintingsTableRow key={painting.paintingId} painting={painting} />
                     ))}
                 </tbody>
             </table>
