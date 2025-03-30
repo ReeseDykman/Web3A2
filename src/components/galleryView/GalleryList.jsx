@@ -23,7 +23,6 @@ const GalleryList = (props) => {
 
          return (
          
-         
 <div className="w-1/3 border mt-6 p-4 bg-sky-500 rounded-lg shadow-sm">
       <h2 className="text-xl font-semibold mb-4">List of Galleries</h2>
       <ul className="space-y-2">

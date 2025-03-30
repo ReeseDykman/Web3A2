@@ -63,7 +63,6 @@ const GalleryInfo = (props) => {
                 center={[props.gallery.latitude, props.gallery.longitude]}
                 zoom={14}
                 className="h-80 w-80 rounded-lg "
-
               >
                 <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
                 <Marker
@@ -71,7 +70,6 @@ const GalleryInfo = (props) => {
                     props.gallery.latitude,
                     props.gallery.longitude,
                   ]}
-                  
                 />
               </MapContainer>
 
