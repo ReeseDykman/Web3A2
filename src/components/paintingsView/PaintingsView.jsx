@@ -1,19 +1,20 @@
 import PaintingsForm from "./PaintingsForm";
 import PaintingsTable from "./PaintingsTable";
+import filter from "../../scripts/filterFactory";
 import { PaintingsContext } from "../../App";
 import { useContext, useState } from "react";
 
 const PaintingsView = () => {
     const { paintings } = useContext(PaintingsContext);
     const [filteredPaintings, setFilteredPaintings] = useState(paintings);
-    const [order, setOrder] = useState({field : "Title", value : "asc"});
+    const [sort, setSort] = useState(new filter("Title", "asc"));
 
     const handleFilter = (filter) => {
         // Filtering logic here
     };
 
-    const handleOrder = ({field, value}) => {
-        setOrder({[field]: value});
+    const handleSort = ({field, value}) => {
+        setSort(new filter(field, value));
         const sortedPaintings = [...filteredPaintings].sort((a, b) => {
             const aValue = a[field] || 0;
             const bValue = b[field] || 0;
@@ -33,7 +34,7 @@ const PaintingsView = () => {
 
             {/* Paintings List */}
             <div className="flex-1 bg-gray-100 shadow-md rounded p-4 h-165 overflow-hidden">
-                <PaintingsTable paintings={filteredPaintings} handleOrder={handleOrder} order={order}/>
+                <PaintingsTable paintings={filteredPaintings} handleOrder={handleSort} sort={sort}/>
             </div>
         </section>
     );
