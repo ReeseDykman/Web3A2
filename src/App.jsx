@@ -51,6 +51,7 @@ function App() {
       const { data, error } = await supabase
                         .from("Paintings")
                         .select("paintingId,imageFileName,title,shapeId,museumLink,accessionNumber,copyrightText,description,excerpt,yearOfWork,width,height,medium,cost,MSRP,googleLink,googleDescription,wikiLink,jsonAnnotations, Artists!inner(firstName, lastName, nationality, yearOfBirth, yearOfDeath, details, artistLink), Galleries!inner(galleryName,galleryNativeName,galleryCity,galleryAddress,galleryCountry,latitude,longitude,galleryWebSite,flickrPlaceId,yahooWoeId,googlePlaceId)")
+                        .order("title", { ascending: true })
       if (error) {
         console.error("Error fetching paintings:", error);
         return;
@@ -66,7 +67,7 @@ function App() {
 
   async function getGalleries() {
     if (localStorage.getItem("galleries") == null) {
-      const { data } = await supabase.from("Galleries").select();
+      const { data } = await supabase.from("Galleries").select().order("galleryName", { ascending: true });
       localStorage.setItem("galleries", JSON.stringify(data));
       setGalleries(data);
     } else {
@@ -78,7 +79,10 @@ function App() {
 
   async function getArtists() {
     if (localStorage.getItem("artists") == null) {
-      const { data } = await supabase.from("Artists").select();
+      const { data, error } = await supabase.from("Artists").select().order("lastName", { ascending: true });
+      if (error) {
+        console.error("Error fetching artists:", error);
+      }
       localStorage.setItem("artists", JSON.stringify(data));
       setArtists(data);
     } else {

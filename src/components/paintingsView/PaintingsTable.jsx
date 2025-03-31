@@ -2,13 +2,6 @@ import PaintingsTableRow from "./PaintingsTableRow.jsx";
 import SortButton from "./SortButton.jsx";
 
 const PaintingsTable = (props) => {
-    const getSort = (field) => {
-        if (props.sort.field === field) {
-            return (
-                <SortButton field={field} handleSort={props.handleOrder} order={props.sort} />
-            );
-        }
-    };
 
     return (
         <div className="h-full overflow-y-auto overflow-x-auto">
@@ -21,25 +14,25 @@ const PaintingsTable = (props) => {
                         <th className="p-5 text-center border border-gray-300">
                             <div className="flex items-center justify-center gap-2">
                                 <span>Title</span>
-                                {getSort("Title")}
+                                <SortButton row="Title" handleSort={props.handleSort} sort={props.sort} />
                             </div>
                         </th>
                         <th className="p-5 text-center border border-gray-300">
                             <div className="flex items-center justify-center gap-2">
                                 <span>Artist</span>
-                                {getSort("Artist")}
-                            </div>
-                        </th>
-                        <th className="p-5 text-center border border-gray-300">
-                            <div className="flex items-center justify-center gap-2">
-                                <span>Gallery</span>
-                                {getSort("Gallery")}
+                                <SortButton row="Artist" handleSort={props.handleSort} sort={props.sort} />
                             </div>
                         </th>
                         <th className="p-5 text-center border border-gray-300">
                             <div className="flex items-center justify-center gap-2">
                                 <span>Year</span>
-                                {getSort("Year")}
+                                <SortButton row="Year" handleSort={props.handleSort} sort={props.sort} />
+                            </div>
+                        </th>
+                        <th className="p-5 text-center border border-gray-300">
+                            <div className="flex items-center justify-center gap-2">
+                                <span>Gallery</span>
+                                <SortButton row="Gallery" handleSort={props.handleSort} sort={props.sort} />
                             </div>
                         </th>
                         <th className="p-5 text-center border border-gray-300">Medium</th>
