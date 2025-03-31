@@ -5,7 +5,7 @@ import Login from './components/Login.jsx';
 import Navbar from './components/Header.jsx';
 import GenreView from './components/GenreView.jsx';
 import GalleryView from './components/galleryView/GalleryView.jsx';
-import supabase from './components/supabaseClient.js';
+import supabase from './scripts/supabaseClient.js';
 
 export const ArtistsContext = createContext();
 export const GenresContext = createContext();

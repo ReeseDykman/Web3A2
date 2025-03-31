@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import supabase from "./supabaseClient.js";
+import supabase from "../scripts/supabaseClient.js";
 import GenreList from "./GenreList.jsx";
 import GenreScreen from "./GenreScreen.jsx";
 import { GenresContext } from "../App.jsx";

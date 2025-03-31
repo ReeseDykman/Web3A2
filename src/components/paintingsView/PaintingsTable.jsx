@@ -1,7 +1,22 @@
 import PaintingsTableRow from "./PaintingsTableRow.jsx";
 import SortButton from "./SortButton.jsx";
+import PaintingsModal from "./PaintingsModal.jsx";
+import { useState } from "react";
 
 const PaintingsTable = (props) => {
+
+    const [modalOpen, setModalOpen] = useState(false);
+    const [selectedPainting, setSelectedPainting] = useState(null);
+
+    const closeModal = () => {
+        setModalOpen(false);
+        setSelectedPainting(null);
+    }
+
+    const handleRowClick = (painting) => {
+        setModalOpen(true);
+        setSelectedPainting(painting);
+    }
 
     return (
         <div className="h-full overflow-y-auto overflow-x-auto">
@@ -40,11 +55,12 @@ const PaintingsTable = (props) => {
                     </tr>
                 </thead>
                 <tbody className="bg-white">
-                    {props.paintings.map((painting, index) => (
-                        <PaintingsTableRow key={painting.id || index} painting={painting} />
+                    {props.paintings.map((painting) => (
+                        <PaintingsTableRow key={`${painting.paintingId}Row`} painting={painting} rowClick={handleRowClick}/>
                     ))}
                 </tbody>
             </table>
+            <PaintingsModal open={modalOpen} onClose={closeModal} painting={selectedPainting}/>
         </div>
     );
 };

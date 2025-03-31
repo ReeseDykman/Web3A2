@@ -21,7 +21,7 @@ const Navbar = () => {
   
     return (
             <nav className='bg-sky-700 p-4 text-white flex items-center justify-between rounded '>
-                <img src="src/assests/Music_logo.png" alt="Music Logo" className='h-30' />
+                <img src="src/assets/Music_logo.png" alt="Music Logo" className='h-30' />
                 <div className='text-2xl'>Art Database Project {currentPage} View </div>
                 <ul className='flex gap-2'>
                     <li ><NavLink to="/paintings" className=' text-white px-3 py-2 rounded hover:bg-gray-200 hover:text-black'>Paintings</NavLink></li>
