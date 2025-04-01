@@ -151,18 +151,12 @@ function App() {
   }, []);
 
   useEffect(() => {
-    console.log("Favorites changed!");
+    
     localStorage.setItem("galleryFavorites", JSON.stringify(galleryFavorites));
     localStorage.setItem("artistsFavorites", JSON.stringify(artistsFavorites));
     localStorage.setItem("paintingFavorites", JSON.stringify(paintingsFavorites));
 
-    const favBttn = document.querySelector("#fav-bttn");
-    if (!favBttn) return;
-    const hasFavorites =
-      galleryFavorites.length > 0 ||
-      artistsFavorites.length > 0 ||
-      paintingsFavorites.length > 0;
-    hasFavorites ? favBttn.classList.remove("disabled") : favBttn.classList.add("disabled");
+  
 
   }, [galleryFavorites, artistsFavorites, paintingsFavorites]);
 
