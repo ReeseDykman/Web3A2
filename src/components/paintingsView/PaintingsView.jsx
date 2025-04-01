@@ -43,12 +43,12 @@ const PaintingsView = () => {
             const bValue = fieldFunction(b) || "";
 
             if (typeof aValue === "number" && typeof bValue === "number") {
-                return sort.value === "asc" ? aValue - bValue : bValue - aValue;
+                return sort.value === "asc" ? bValue - aValue : aValue - bValue;
             }
 
-            if (aValue.toLowerCase() < bValue.toLowerCase()) {
+            if (aValue.toLowerCase().replace(/ /g, "") < bValue.toLowerCase().replace(/ /g, "")) {
                 return sort.value === "asc" ? -1 : 1;
-            } else if (aValue.toLowerCase() > bValue.toLowerCase()) {
+            } else if (aValue.toLowerCase().replace(/ /g, "") > bValue.toLowerCase().replace(/ /g, "")) {
                 return sort.value === "asc" ? 1 : -1;
             } else {
                 return 0;
@@ -58,7 +58,7 @@ const PaintingsView = () => {
         setFilteredPaintings(sortedFilteredPaintings);
     };
 
-    const handleSort = ({ field, value }) => {
+    const handleSort = ({ field, value }, paintings) => {
         setSort(new filter(field, value));
 
         //Returns the proper field in the json
@@ -69,7 +69,11 @@ const PaintingsView = () => {
             year: (painting) => painting.yearOfWork,
         };
 
-        const sortedPaintings = [...filteredPaintings].sort((a, b) => {
+        if (!paintings) {
+            paintings = [...filteredPaintings];
+        }
+
+        const sortedPaintings = paintings.sort((a, b) => {
             let aValue, bValue;
 
             //get the function for the field and pass the painting to it
@@ -79,7 +83,7 @@ const PaintingsView = () => {
             // Years are numbers, so we need to handle them differently but we can compare them directly
             //if ascending, subtract a from b, if descending, subtract b from a
             if (typeof aValue === "number" && typeof bValue === "number") {
-                return value === "asc" ? aValue - bValue : bValue - aValue;
+                return value === "asc" ? bValue - aValue : aValue - bValue;
             }
 
             //if a is greater than b, return 1, if a is less than b, return -1, else return 0
@@ -98,6 +102,7 @@ const PaintingsView = () => {
 
     const handleReset = () => {
         setFilteredPaintings(paintings);
+        handleSort(sort, paintings);
     }
 
     return (
