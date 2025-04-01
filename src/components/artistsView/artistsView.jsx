@@ -55,14 +55,25 @@ const ArtistsView = () => {
         setArtistPaintings(sortedPaintings);
     };
 
+    const handleArtistClick = (artist) => {
+        setSelectedArtist(artist);
+        const filteredPaintings = paintings.filter((painting) => painting.Artists.artistId === artist.artistId);
+        handleSort(sort, filteredPaintings);
+    }
+
+    const handleBackButton = () => {
+        setSelectedArtist(null);
+        setArtistPaintings(paintings);
+    }
+
     return (
         <section className="w-full h-full mx-auto p-4 flex flex-col md:flex-row gap-4 justify-between">
 
-            <div className="flex-1 bg-gray-100 shadow-md rounded p-4">
-                <ul className="list-disc list-inside">
+            <div className="flex-1 bg-gray-100 shadow-md rounded p-4 h-167 overflow-hidden">
+                <ul className="list-disc list-inside overflow-y-auto h-full">
                     {artists.map((artist) => (
                         <li key={artist.artistId} className="cursor-pointer hover:text-blue-500" onClick={() => {
-                            setSelectedArtist(artist);
+                            handleArtistClick(artist);
                         }}>
                             {`${artist.firstName} ${artist.lastName}`}
                         </li>
@@ -81,13 +92,13 @@ const ArtistsView = () => {
                     <div className="flex flex-col gap-4">
                         <h1 className="text-2xl font-bold">{`${selectedArtist.firstName} ${selectedArtist.lastName}`}</h1>
                         <p className="text-gray-500">{selectedArtist.details}</p>
-                        <button className="bg-blue-500 text-white px-4 py-2 rounded" onClick={() => setSelectedArtist(null)}>Back</button>
+                        <button className="bg-blue-500 text-white px-4 py-2 rounded" onClick={handleBackButton}>Back</button>
                     </div>
                 )}
                 
             </div>
 
-            <div className="flex-5 bg-gray-100 shadow-md rounded p-4 h-176 overflow-hidden">
+            <div className="flex-5 bg-gray-100 shadow-md rounded p-4 h-167 overflow-hidden">
                 <PaintingsTable paintings={artistPaintings} handleSort={handleSort} sort={sort} />
             </div>
         </section>
