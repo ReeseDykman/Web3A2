@@ -5,7 +5,7 @@ import Login from './components/Login.jsx';
 import Navbar from './components/Header.jsx';
 import GenreView from './components/GenreView.jsx';
 import GalleryView from './components/galleryView/GalleryView.jsx';
-import ArtistsView from './components/artistsView/artistsView.jsx';
+import ArtistsView from './components/artistsView/ArtistsView.jsx';
 import PaintingsView from './components/paintingsView/PaintingsView.jsx';
 import supabase from './scripts/supabaseClient.js';
 
@@ -187,9 +187,6 @@ function App() {
                       <Route path="/login"
                         element={loggedIn ? <Navigate to="/paintings" /> : <Login handleLogin={handleLogin} />} />
                       <Route path="/galleries" element={loggedIn ? <GalleryView /> : <Navigate to="/login" />} />
-                      <Route path="/artists"
-                        element={loggedIn ? (<h1 className="text-4xl text-center font-bold p-8">Artists</h1>) : (
-                          <Navigate to="/login" />)} />
                       <Route path="/genres" element={loggedIn ? <GenreView /> : <Navigate to="/login" />} />
                       <Route path="/paintings"
                         element={loggedIn ? <PaintingsView /> : (
