@@ -2,9 +2,13 @@ import { useEffect, useState, createContext, useContext } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 import Login from './components/Login.jsx';
-import Navbar from './components/Header.jsx';
-import GenreView from './components/GenreView.jsx';
+import Navbar from './components/commonViews/Header.jsx';
+import GenreView from './components/genresView/GenreView.jsx';
 import GalleryView from './components/galleryView/GalleryView.jsx';
+
+import FavoritesView from './components/commonViews/FavoritesView.jsx';
+
+import AboutView from './components/commonViews/AboutView.jsx';
 import supabase from './components/supabaseClient.js';
 
 export const ArtistsContext = createContext();
@@ -18,6 +22,7 @@ export const GalleriesFavoritesContext = createContext();
 export const ArtistsFavoritesContext = createContext();
 export const PaintingsFavoritesContext = createContext();
 import PaintingsView from './components/paintingsView/PaintingsView.jsx';
+
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -57,8 +62,8 @@ function App() {
   async function getPaintings() {
     if (localStorage.getItem("paintings") == null) {
       const { data, error } = await supabase
-                        .from("Paintings")
-                        .select("artistId, paintingId, galleryId,imageFileName,title,shapeId,museumLink,accessionNumber,copyrightText,description,excerpt,yearOfWork,width,height,medium,cost,MSRP,googleLink,googleDescription,wikiLink,jsonAnnotations, Artists!inner(firstName, lastName, nationality, yearOfBirth, yearOfDeath, details, artistLink), Galleries!inner(galleryName,galleryNativeName,galleryCity,galleryAddress,galleryCountry,latitude,longitude,galleryWebSite,flickrPlaceId,yahooWoeId,googlePlaceId)")
+        .from("Paintings")
+        .select("artistId, paintingId, galleryId,imageFileName,title,shapeId,museumLink,accessionNumber,copyrightText,description,excerpt,yearOfWork,width,height,medium,cost,MSRP,googleLink,googleDescription,wikiLink,jsonAnnotations, Artists!inner(firstName, lastName, nationality, yearOfBirth, yearOfDeath, details, artistLink), Galleries!inner(galleryName,galleryNativeName,galleryCity,galleryAddress,galleryCountry,latitude,longitude,galleryWebSite,flickrPlaceId,yahooWoeId,googlePlaceId)")
       if (error) {
         console.error("Error fetching paintings:", error);
         return;
@@ -111,13 +116,13 @@ function App() {
 
   async function getFavorites() {
     if (localStorage.getItem("galleryFavorites") == null) {
-       localStorage.setItem("galleryFavorites", JSON.stringify([]));
+      localStorage.setItem("galleryFavorites", JSON.stringify([]));
       setGalleryFavorites([]);
-    } else{
+    } else {
       setGalleryFavorites(JSON.parse(localStorage.getItem("galleryFavorites")));
     }
 
-    
+
     if (localStorage.getItem("artistsFavorites") == null) {
       localStorage.setItem("artistsFavorites", JSON.stringify([]));
       setArtistsFavorites([]);
@@ -126,7 +131,7 @@ function App() {
     }
 
     if (localStorage.getItem("paintingFavorites") == null) {
-      
+
       localStorage.setItem("paintingFavorites", JSON.stringify([]));
       setPaintingsFavorites([]);
 
@@ -145,53 +150,65 @@ function App() {
     getFavorites();
   }, []);
 
+  useEffect(() => {
+    console.log("Favorites changed!");
+    localStorage.setItem("galleryFavorites", JSON.stringify(galleryFavorites));
+    localStorage.setItem("artistsFavorites", JSON.stringify(artistsFavorites));
+    localStorage.setItem("paintingFavorites", JSON.stringify(paintingsFavorites));
+
+    const favBttn = document.querySelector("#fav-bttn");
+    if (!favBttn) return;
+    const hasFavorites =
+      galleryFavorites.length > 0 ||
+      artistsFavorites.length > 0 ||
+      paintingsFavorites.length > 0;
+    hasFavorites ? favBttn.classList.remove("disabled") : favBttn.classList.add("disabled");
+
+  }, [galleryFavorites, artistsFavorites, paintingsFavorites]);
+
+
+
 
   return (
-     <ArtistsContext.Provider value={{ artists, setArtists }}>
-          <PaintingGenresContext.Provider value={{ paintingGenres, setPaintingGenres }}>
-            <GenresContext.Provider value={{ genres, setGenres }}>
-              <PaintingsContext.Provider value={{ paintings, setPaintings }}>
-                <GalleriesContext.Provider value={{ galleries, setGalleries }}>
-                  <PaintingsFavoritesContext.Provider value={{ paintingsFavorites, setPaintingsFavorites }}>
-                   <GalleriesFavoritesContext.Provider value={{ galleryFavorites, setGalleryFavorites }}>
-                    <ArtistsFavoritesContext.Provider value={{ artistsFavorites, setArtistsFavorites }}>
+    <ArtistsContext.Provider value={{ artists, setArtists }}>
+      <PaintingGenresContext.Provider value={{ paintingGenres, setPaintingGenres }}>
+        <GenresContext.Provider value={{ genres, setGenres }}>
+          <PaintingsContext.Provider value={{ paintings, setPaintings }}>
+            <GalleriesContext.Provider value={{ galleries, setGalleries }}>
+              <PaintingsFavoritesContext.Provider value={{ paintingsFavorites, setPaintingsFavorites }}>
+                <GalleriesFavoritesContext.Provider value={{ galleryFavorites, setGalleryFavorites }}>
+                  <ArtistsFavoritesContext.Provider value={{ artistsFavorites, setArtistsFavorites }}>
                     <ErasContext.Provider value={{ eras, setEras }}>
+                      <main className="max-w-screen min-h-screen">
 
-
-
-
-
-
-
-                  <main className="max-w-screen min-h-screen">
-
-                    {loggedIn && <Navbar />}
-                    <Routes>
-                      <Route path="/" element={<Navigate to="/login" />} />
-                      <Route path="/login"
-                        element={loggedIn ? <Navigate to="/paintings" /> : <Login handleLogin={handleLogin} />} />
-                      <Route path="/galleries" element={loggedIn ? <GalleryView /> : <Navigate to="/login" />} />
-                      <Route path="/artists"
-                        element={loggedIn ? (<h1 className="text-4xl text-center font-bold p-8">Artists</h1>) : (
-                          <Navigate to="/login" />)} />
-                      <Route path="/genres" element={loggedIn ? <GenreView /> : <Navigate to="/login" />} />
-                      <Route path="/paintings"
-                        element={loggedIn ? <PaintingsView /> : (
-                          <Navigate to="/login" />)} />
-                      <Route path="*" element={<Navigate to="/login" />} />
-                    </Routes>
-                    {loggedIn && (
-                      <footer className="bg-gray-800 text-white text-center py-4 mt-auto">
-                        <p>&copy; 2025 Reese Dykman & Christopher Nottingham.</p>
-                      </footer>
-                    )}
-                  </main>
-                </ErasContext.Provider>
-                </ArtistsFavoritesContext.Provider>
-                  </GalleriesFavoritesContext.Provider>
-                  </PaintingsFavoritesContext.Provider>
-
-              
+                        {loggedIn && <Navbar />}
+                        <Routes>
+                          <Route path="/" element={<Navigate to="/login" />} />
+                          <Route path="/login"
+                            element={loggedIn ? <Navigate to="/paintings" /> : <Login handleLogin={handleLogin} />} />
+                          <Route path="/galleries" element={loggedIn ? <GalleryView /> : <Navigate to="/login" />} />
+                          <Route path="/artists"
+                            element={loggedIn ? (<h1 className="text-4xl text-center font-bold p-8">Artists</h1>) : (
+                              <Navigate to="/login" />)} />
+                          <Route path="/genres" element={loggedIn ? <GenreView /> : <Navigate to="/login" />} />
+                          <Route path="/paintings"
+                            element={loggedIn ? <PaintingsView /> : (<Navigate to="/login" />)} />
+                          <Route path="/about" element={loggedIn ? <AboutView /> : (
+                            <Navigate to="/login" />)} />
+                          <Route path="/favorites" element={loggedIn ? <FavoritesView /> : (
+                            <Navigate to="/login" />)} />
+                          <Route path="*" element={<Navigate to="/login" />} />
+                        </Routes>
+                        {loggedIn && (
+                          <footer className="bg-gray-800 text-white text-center py-4 mt-auto">
+                            <p>&copy; 2025 Reese Dykman & Christopher Nottingham.</p>
+                          </footer>
+                        )}
+                      </main>
+                    </ErasContext.Provider>
+                  </ArtistsFavoritesContext.Provider>
+                </GalleriesFavoritesContext.Provider>
+              </PaintingsFavoritesContext.Provider>
             </GalleriesContext.Provider>
           </PaintingsContext.Provider>
         </GenresContext.Provider>

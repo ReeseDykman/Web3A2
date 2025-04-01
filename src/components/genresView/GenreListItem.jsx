@@ -3,11 +3,12 @@ const GenreListItem = (props) => {
     const handleClick = (e) => {
 
         props.update(props.data.genreId)
+        
 
     }
 
-    return(
-        <a onClick={handleClick}>{props.data.genreName}</a>
+    return (
+        <li className="hover:text-white"><a onClick={handleClick}>{props.data.genreName}</a></li>
     )
 
 
