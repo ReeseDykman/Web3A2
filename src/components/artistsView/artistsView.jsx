@@ -11,6 +11,7 @@ const ArtistsView = () => {
     const [artistPaintings, setArtistPaintings] = useState(paintings);
     const { artists } = useContext(ArtistsContext);
     const [selectedArtist, setSelectedArtist] = useState(null);
+    const [artistSearch, setArtistSearch] = useState(artists);
     const [sort, setSort] = useState(new filter("Title", "asc"));
 
     const handleSort = ({ field, value }, paintings) => {
@@ -66,16 +67,33 @@ const ArtistsView = () => {
         setArtistPaintings(paintings);
     }
 
+    const handleSearch = (e) => {
+        const searchTerm = e.target.value;
+        if(searchTerm === ""){
+            setArtistSearch(artists);
+            return;
+        }
+        const filteredArtists = artists.filter((artist) => artist.firstName.toLowerCase().startsWith(searchTerm.toLowerCase()) || artist.lastName.toLowerCase().startsWith(searchTerm.toLowerCase()));
+        setArtistSearch(filteredArtists);
+    }
+
     return (
         <section className="w-full h-full mx-auto p-4 flex flex-col md:flex-row gap-4 justify-between">
 
             <div className="flex-1 bg-gray-100 shadow-md rounded p-4 h-167 overflow-hidden">
-                <ul className="list-disc list-inside overflow-y-auto h-full">
-                    {artists.map((artist) => (
-                        <li key={artist.artistId} className="cursor-pointer hover:text-blue-500" onClick={() => {
-                            handleArtistClick(artist);
-                        }}>
-                            {`${artist.firstName} ${artist.lastName}`}
+                <input onChange={handleSearch} type="text" placeholder="Search for an artist..." className="w-full p-2 border border-gray-300 rounded mb-4" />
+                <ul className="list-none space-y-2 overflow-y-auto h-full">
+                    {artistSearch.map((artist) => (
+                        <li
+                            key={artist.artistId}
+                            className="cursor-pointer p-3 bg-white rounded shadow hover:bg-gray-100 hover:shadow-md transition-all"
+                            onClick={() => {
+                                handleArtistClick(artist);
+                            }}>
+
+                            <span className="text-lg font-medium text-gray-800">
+                                {`${artist.firstName} ${artist.lastName}`}
+                            </span>
                         </li>
                     ))}
                 </ul>
