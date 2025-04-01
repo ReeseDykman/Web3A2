@@ -56,8 +56,8 @@ const PaintingsTable = (props) => {
                     </tr>
                 </thead>
                 <tbody className="bg-white">
-                    {props.paintings.map((painting) => (
-                        <PaintingsTableRow key={`${painting.paintingId}Row`} painting={painting} rowClick={handleRowClick}/>
+                    {props.paintings.map((painting, index) => (
+                        <PaintingsTableRow key={painting.paintingId ? `${painting.paintingId}Row` : `${index}Row`} painting={painting} rowClick={handleRowClick}/>
                     ))}
                 </tbody>
             </table>

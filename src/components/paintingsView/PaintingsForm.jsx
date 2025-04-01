@@ -107,8 +107,8 @@ const PaintingsForm = (props) => {
                 </div>
                 <select value={artist} disabled={radioSelection != "artist"} onChange={handleTextChange} type="text" id="artist" className="disabled:bg-gray-500 disabled:opacity-7 border border-gray-300 rounded p-2 w-full col-span-3">
                     <option disabled={artist != ""}>Select an artist</option>
-                    {artists.map((artist) => (
-                        <option key={`${artist.artistId}Select`} value={`${artist.firstName} ${artist.lastName}`}>
+                    {artists.map((artist, index) => (
+                        <option key={artist.artistId ? `${artist.artistId}Select` : `${index}Select`} value={`${artist.firstName} ${artist.lastName}`}>
                             {`${artist.firstName} ${artist.lastName}`}
                         </option>
                     ))}
@@ -121,8 +121,8 @@ const PaintingsForm = (props) => {
                 </div>
                 <select value={gallery} disabled={radioSelection != "gallery"} onChange={handleTextChange} type="text" id="gallery" className="disabled:bg-gray-500 disabled:opacity-7 border border-gray-300 rounded p-2 w-full col-span-3" >
                     <option disabled={gallery != ""}>Select a gallery</option>
-                    {galleries.map((gallery) => (
-                        <option key={`${gallery.galleryId}Select`} value={gallery.galleryName}>
+                    {galleries.map((gallery,index) => (
+                        <option key={gallery.galleryId ? `${gallery.galleryId}Select` : `${index}Select`} value={gallery.galleryName}>
                             {gallery.galleryName}
                         </option>
                     ))}

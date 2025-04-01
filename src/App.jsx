@@ -96,7 +96,8 @@ function App() {
 
   async function getArtists() {
     if (localStorage.getItem("artists") == null) {
-      const { data, error } = await supabase.from("Artists").select().order("lastName", { ascending: true });
+      const { data, error } = await supabase.from("Artists")
+                      .select("firstName, lastName, nationality, yearOfBirth, yearOfDeath, details, artistLink, Paintings!inner(paintingId,imageFileName,title,shapeId,museumLink,accessionNumber,copyrightText,description,excerpt,yearOfWork,width,height,medium,cost,MSRP,googleLink,googleDescription,wikiLink,jsonAnnotations)").order("lastName", { ascending: true });
       if (error) {
         console.error("Error fetching artists:", error);
       }
