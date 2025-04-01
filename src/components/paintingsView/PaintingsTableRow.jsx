@@ -1,10 +1,6 @@
 const PaintingsTableRow = (props) => {
     const painting = props.painting;
 
-    const handleImageError = () => {
-        console.error(`Image failed to load: ${painting.imageFileName}`);
-    };
-
     const handleRowClick = () => {
         props.rowClick(painting);
     }
@@ -13,9 +9,14 @@ const PaintingsTableRow = (props) => {
         <tr className="bg-white w-full h-full hover:bg-gray-100 hover:shadow-md transition duration-200" onClick={handleRowClick}>
             <td className="p-5 text-center">
                 <img
-                    src={`https://res.cloudinary.com/funwebdev/image/upload/h_100/art/paintings/${painting.imageFileName}.jpg`}
+                    src={`https://res.cloudinary.com/funwebdev/image/upload/h_500/art/paintings/${painting.imageFileName}.jpg`}
                     alt={painting.title}
-                    onError={handleImageError}
+                    onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = "https://upload.wikimedia.org/wikipedia/commons/a/a3/Image-not-found.png";
+                        e.target.className = "w-16 h-16 object-cover";
+                        e.target.alt = "Image not available";
+                    }}
                     className="w-16 h-16 object-cover"
                 />
             </td>

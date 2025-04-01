@@ -56,22 +56,31 @@ function App() {
 
   async function getPaintings() {
     if (localStorage.getItem("paintings") == null) {
-      const { data, error } = await supabase
-                        .from("Paintings")
-                        .select("paintingId,imageFileName,title,shapeId,museumLink,accessionNumber,copyrightText,description,excerpt,yearOfWork,width,height,medium,cost,MSRP,googleLink,googleDescription,wikiLink,jsonAnnotations, Artists!inner(firstName, lastName, nationality, yearOfBirth, yearOfDeath, details, artistLink), Galleries!inner(galleryName,galleryNativeName,galleryCity,galleryAddress,galleryCountry,latitude,longitude,galleryWebSite,flickrPlaceId,yahooWoeId,googlePlaceId)")
-                        .order("title", { ascending: true })
-      if (error) {
-        console.error("Error fetching paintings:", error);
-        return;
-      }
-      localStorage.setItem("paintings", JSON.stringify(data));
-      setPaintings(data);
-    } else {
-      const loadData = JSON.parse(localStorage.getItem("paintings"));
-      setPaintings(loadData);
-    }
+        const { data, error } = await supabase
+            .from("Paintings")
+            .select(
+                "paintingId,imageFileName,title,shapeId,museumLink,accessionNumber,copyrightText,description,excerpt,yearOfWork,width,height,medium,cost,MSRP,googleLink,googleDescription,wikiLink,jsonAnnotations, Artists!inner(firstName, lastName, nationality, yearOfBirth, yearOfDeath, details, artistLink), Galleries!inner(galleryName,galleryNativeName,galleryCity,galleryAddress,galleryCountry,latitude,longitude,galleryWebSite,flickrPlaceId,yahooWoeId,googlePlaceId)"
+            );
 
-  }
+        if (error) {
+            console.error("Error fetching paintings:", error);
+            return;
+        }
+
+        // Supabase sort is not case insensitive, so we sort it here
+        const sortedData = data.sort((a, b) => {
+            const titleA = a.title.toLowerCase().trim().replace(/ /g, "");
+            const titleB = b.title.toLowerCase().trim().replace(/ /g, "");
+            return titleA < titleB ? -1 : titleA > titleB ? 1 : 0;
+        });
+
+        localStorage.setItem("paintings", JSON.stringify(sortedData));
+        setPaintings(sortedData);
+    } else {
+        const loadData = JSON.parse(localStorage.getItem("paintings"));
+        setPaintings(loadData);
+    }
+}
 
   async function getGalleries() {
     if (localStorage.getItem("galleries") == null) {

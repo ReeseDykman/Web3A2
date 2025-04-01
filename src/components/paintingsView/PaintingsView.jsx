@@ -81,11 +81,12 @@ const PaintingsView = () => {
             if (typeof aValue === "number" && typeof bValue === "number") {
                 return value === "asc" ? aValue - bValue : bValue - aValue;
             }
+
             //if a is greater than b, return 1, if a is less than b, return -1, else return 0
             //the return value is inverted if descending
-            if (aValue.toLowerCase() < bValue.toLowerCase()) {
+            if (aValue.toLowerCase().trim().replace(/ /g, "") < bValue.toLowerCase().trim().replace(/ /g, "")) {
                 return value === "asc" ? -1 : 1;
-            } else if (aValue.toLowerCase() > bValue.toLowerCase()) {
+            } else if (aValue.toLowerCase().replace(/ /g, "") > bValue.toLowerCase().trim().replace(/ /g, "")) {
                 return value === "asc" ? 1 : -1;
             } else {
                 return 0;
