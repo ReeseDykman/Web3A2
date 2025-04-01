@@ -3,6 +3,7 @@ import SortButton from "./SortButton.jsx";
 import PaintingsModal from "./PaintingsModal.jsx";
 import { useState } from "react";
 
+
 const PaintingsTable = (props) => {
 
     const [modalOpen, setModalOpen] = useState(false);
