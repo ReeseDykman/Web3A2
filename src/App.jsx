@@ -5,6 +5,8 @@ import Login from './components/Login.jsx';
 import Navbar from './components/Header.jsx';
 import GenreView from './components/GenreView.jsx';
 import GalleryView from './components/galleryView/GalleryView.jsx';
+import ArtistsView from './components/artistsView/artistsView.jsx';
+import PaintingsView from './components/paintingsView/PaintingsView.jsx';
 import supabase from './scripts/supabaseClient.js';
 
 export const ArtistsContext = createContext();
@@ -17,7 +19,7 @@ export const ErasContext = createContext();
 export const GalleriesFavoritesContext = createContext();
 export const ArtistsFavoritesContext = createContext();
 export const PaintingsFavoritesContext = createContext();
-import PaintingsView from './components/paintingsView/PaintingsView.jsx';
+
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -192,6 +194,7 @@ function App() {
                       <Route path="/paintings"
                         element={loggedIn ? <PaintingsView /> : (
                           <Navigate to="/login" />)} />
+                      <Route path="/artists" element={loggedIn ? <ArtistsView /> : <Navigate to="/login" />} />
                       <Route path="*" element={<Navigate to="/login" />} />
                     </Routes>
                     {loggedIn && (

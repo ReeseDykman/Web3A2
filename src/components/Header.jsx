@@ -25,6 +25,7 @@ const Navbar = () => {
                 <div className='text-2xl'>Art Database Project {currentPage} View </div>
                 <ul className='flex gap-2'>
                     <li ><NavLink to="/paintings" className=' text-white px-3 py-2 rounded hover:bg-gray-200 hover:text-black'>Paintings</NavLink></li>
+                    <li ><NavLink to="/artists" className=' text-white px-3 py-2 rounded hover:bg-gray-200 hover:text-black'>Artists</NavLink></li>
                     <li><NavLink to="/galleries" className='text-white px-3 py-2 rounded hover:bg-gray-200 hover:text-black'>Galleries</NavLink></li>
                     <li><NavLink to="/genres" className='text-white px-3 py-2 rounded hover:bg-gray-200 hover:text-black'>Genres</NavLink></li>
                     <li><NavLink to="/favorite"className='text-white px-3 py-2 rounded hover:bg-gray-200 hover:text-black'>Favorite</NavLink></li>
