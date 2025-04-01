@@ -47,7 +47,7 @@ const FavoriteView = () => {
       <div className="flex flex-wrap gap-10 justify-center items-start w-full max-w-6xl">
 
         
-        <div className="bg-white p-6 rounded-lg shadow w-full md:w-1/3 min-h-[280px]">
+        <div className="bg-white p-6 rounded-lg shadow w-full md:w-1/3 min-h-100">
           <h2 className="text-2xl font-bold mb-4">Galleries</h2>
           {galleryFavorites.length > 0 ? (
             <table className="w-full text-left border-collapse">
@@ -62,8 +62,8 @@ const FavoriteView = () => {
                   <tr key={gallery.galleryId} className="border">
                     <td className="py-2">{gallery.galleryName}</td>
                     <td className="py-2 text-right">
-                      <button onClick={() => removeGallery(gallery.galleryId)}className="text-red-500 hover:text-red-700 text-sm"
-                      >
+                      <button onClick={() => removeGallery(gallery.galleryId)}
+                      className="text-red-500 hover:text-red-700 text-sm">
                         Remove
                       </button>
                     </td>
@@ -77,7 +77,7 @@ const FavoriteView = () => {
         </div>
 
        
-        <div className="bg-white p-6 rounded-lg shadow w-full md:w-1/3 min-h-[280px]">
+        <div className="bg-white p-6 rounded-lg shadow w-full md:w-1/3 min-h-100">
           <h2 className="text-2xl font-bold mb-4">Artists</h2>
           {artistsFavorites.length > 0 ? (
             <table className="w-full text-left border-collapse">
@@ -106,7 +106,7 @@ const FavoriteView = () => {
         </div>
 
        
-        <div className="bg-white p-6 rounded-lg shadow w-full md:w-1/3 min-h-[280px]">
+        <div className="bg-white p-6 rounded-lg shadow w-full md:w-1/3 min-h-100">
           <h2 className="text-2xl font-bold mb-4">Paintings</h2>
           {paintingsFavorites.length > 0 ? (
             <table className="w-full text-left border-collapse">
@@ -118,7 +118,7 @@ const FavoriteView = () => {
               </thead>
               <tbody>
                 {paintingsFavorites.map((painting) => (
-                  <tr key={painting.paintingId} className="border-b">
+                  <tr key={painting.paintingId} className="border">
                     <td className="py-2">{painting.title}</td>
                     <td className="py-2 text-right">
                       <button onClick={() => removePainting(painting.paintingId)} className="text-red-500 hover:text-red-700 text-sm" >

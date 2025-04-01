@@ -62,7 +62,7 @@ const GalleryInfo = (props) => {
                 key={`${props.gallery.latitude}-${props.gallery.longitude}`}
                 center={[props.gallery.latitude, props.gallery.longitude]}
                 zoom={14}
-                className="h-80 w-80 rounded-lg "
+                className="h-80 w-80 z-0 rounded-lg "
               >
                 <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
                 <Marker
@@ -73,11 +73,8 @@ const GalleryInfo = (props) => {
                 />
               </MapContainer>
 
-              <button
-                type="button"
-                className="mt-4  w-full hover:bg-white hover:text-black  rounded px-4 py-2 "
-                onClick={() => { addGalleryToFavorites(props.gallery) }}
-              >
+              <button type="button" className="mt-4  w-full hover:bg-white hover:text-black rounded px-4 py-2 "
+                onClick={() => { addGalleryToFavorites(props.gallery) }}>
                 Add to Favorites
               </button>
 
