@@ -181,7 +181,7 @@ useEffect(() => {
 
 
 
-                  <main className="max-w-screen min-h-screen">
+                  <main className="bg-green-200 max-w-screen min-h-screen">
 
                   {loggedIn && <Navbar />}
                         <Routes>
@@ -202,7 +202,7 @@ useEffect(() => {
                           <Route path="*" element={<Navigate to="/login" />} />
                         </Routes>
                         {loggedIn && (
-                          <footer className="bg-gray-800 text-white text-center py-4 mt-auto">
+                          <footer className="bg-green-700 text-white text-center py-4 mt-auto">
                             <p>&copy; 2025 Reese Dykman & Christopher Nottingham.</p>
                           </footer>
                         )}

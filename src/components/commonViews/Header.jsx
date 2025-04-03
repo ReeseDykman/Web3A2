@@ -41,7 +41,7 @@ const Navbar = () => {
         // div container to hold the navbar and alert message
         <div>
         {/* The overall container for the navbar */}
-            <nav className="bg-sky-700 p-4 text-white flex items-center justify-between">
+            <nav className="bg-green-700 p-4 text-white flex items-center justify-between">
                 {/* The logo and title */}
                 <img src="src/assets/Music_logo.png" alt="Music Logo" className="h-30" />
                 <div className="text-2xl">
