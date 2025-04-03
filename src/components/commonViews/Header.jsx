@@ -1,3 +1,6 @@
+// Developer: Christopher Nottingham
+// Description: This component is used to display the header of the application. 
+
 import { NavLink, useLocation } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import { GalleriesFavoritesContext } from "../../App.jsx";
@@ -5,7 +8,7 @@ import { ArtistsFavoritesContext } from "../../App.jsx";
 import { PaintingsFavoritesContext } from "../../App.jsx";
 
 const Navbar = () => {
-    const location = useLocation();
+    
 
     // Using context to access the favorites 
     const { galleryFavorites } = useContext(GalleriesFavoritesContext);
