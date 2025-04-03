@@ -44,7 +44,7 @@ const PaintingsModal = (props) => {
                 {toastMessage && <PaintingsToast message={toastMessage} />}
                 <div
                     onClick={(e) => e.stopPropagation}
-                    className={`container w-1/2 bg-white rounded-xl shadow p-6 transition-all ${
+                    className={`container w-1/2 bg-white rounded-xl shadow p-6 transition-all overflow-y-auto ${
                         props.open ? "scale-100 opacity-100" : "scale-235 opacity-0"
                     }`}
                 >
