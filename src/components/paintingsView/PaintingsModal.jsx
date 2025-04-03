@@ -1,11 +1,13 @@
 import { useState, useContext, useEffect } from "react";
 import { PaintingsFavoritesContext } from "../../App.jsx";
+import PaintingsToast from "./PaintingsToast.jsx";
 
 
 const PaintingsModal = (props) => {
 
     const [isLoading, setIsLoading] = useState(true);
     const { paintingsFavorites, setPaintingsFavorites } = useContext(PaintingsFavoritesContext);
+    const [toastMessage, setToastMessage] = useState("");
 
     //isLoading needs to reset every render
     useEffect(() => {
@@ -21,9 +23,21 @@ const PaintingsModal = (props) => {
             setPaintingsFavorites([...paintingsFavorites, props.painting]);
             localStorage.setItem("paintingFavorites", JSON.stringify([...paintingsFavorites, props.painting]));
             console.log("Added to favorites:", props.painting.title);
+
+            setToastMessage(`${props.painting.title} added to favorites!`);
+            
+            // Set a timeout to clear the alert message after 3 seconds
+            setTimeout(() => {
+                setToastMessage("");
+            }, 3000);
         }
         else {
-            console.log("This painting is already a favorite.");
+            setToastMessage("This painting is already in your favorites!");
+
+            // Set a timeout to clear the alert message after 3 seconds
+            setTimeout(() => {
+                setToastMessage("");
+            }, 3000);
         }
     }
 
@@ -31,6 +45,7 @@ const PaintingsModal = (props) => {
         return(
             // MODAL STYLING AND HELP FROM "YOUR CODE LAB" YOUTUBE: https://www.youtube.com/watch?v=dEGbXY-8YtU&ab_channel=YourCodeLab
             <div onClick={props.onClose} className={`flex justify-center items-center fixed inset-0 justify-center items-center transition-colors ${props.open ? "visible bg-black/20" : "invisible"}`}>
+                {toastMessage && (<PaintingsToast message={toastMessage}/>)}
                 <div onClick={(e) => e.stopPropagation} className={`container w-1/2 bg-white rounded-xl shadow p-6 transition-all ${props.open ? "scale-100 opacity-100" : "scale-235 opacity-0"}`}>
                     <div className="flex flex-row gap-4 items-center justify-between">
                         <div className="flex flex-col gap-4 mr-5 flex-shrink-0 w-40 items-center justofy-center">
