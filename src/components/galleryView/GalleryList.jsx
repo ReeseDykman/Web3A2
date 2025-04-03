@@ -1,41 +1,33 @@
+// Developer: Christopher Nottingham
+// Description: This component is used to display the list of galleries in the Gallery View sidebar.
 import GalleryListItem from "./GalleryListItem.jsx";
-
-import {useContext} from "react";
+import { useContext } from "react";
 import { GalleriesContext } from "../../App.jsx";
 
 
-
 const GalleryList = (props) => {
+    
+    // Using context to access the galleries
     const { galleries } = useContext(GalleriesContext);
     
-    //Sort the gallereies by name
-
-    galleries.sort((a, b) => {
-        if (a.galleryName > b.galleryName) {
-            return 1;
-        }
-        if (b.galleryName > a.galleryName) {
-            return -1;
-        }
-        return 0;
+    //Sorting the gallereies by name
+    const sortedGalleries = [...galleries].sort((a, b) => {
+        return a.galleryName.localeCompare(b.galleryName);
     });
 
 
-         return (
-         
-<div className="w-1/3 border mt-6 p-4 bg-sky-500 rounded-lg shadow-sm">
-      <h2 className="text-xl font-semibold mb-4">List of Galleries</h2>
-      <ul className="space-y-2">
-      {galleries.map(g => <GalleryListItem  data={g} id={g.galleryId} key={g.galleryId} update={props.update}/>)}
-      </ul>
-    </div>
+    return (
+        // Container for the galleries list section
+        <div className="w-1/3  mt-6 p-4 bg-sky-500 rounded-lg ">
+            <h2 className="text-xl font-semibold mb-4">List of Galleries</h2>
+            <ul className="space-y-2">
+                {sortedGalleries.map(g => <GalleryListItem data={g} id={g.galleryId} key={g.galleryId} update={props.update} />)}
+            </ul>
+        </div>
 
-            )
+    )
 
-// <ul>
-//         <li>{props.data.map(g => <GalleryListItem data={g} id={g.genreId} key={g.genreId} update={props.update}/>)}</li>
-// </ul>
-
+   
 
 }
 export default GalleryList;
