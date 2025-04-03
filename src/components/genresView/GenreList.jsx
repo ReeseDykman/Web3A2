@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { GenresContext } from "../../App.jsx";
 
 const GenreList = (props) => {
-    console.log(props);
+   
     const { genres } = useContext(GenresContext);
 
     // Sort genres alphabetically by name

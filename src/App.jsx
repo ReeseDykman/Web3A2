@@ -1,7 +1,7 @@
 import { useEffect, useState, createContext } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
-import Login from './components/Login.jsx';
+import Login from './components/commonViews/Login.jsx';
 import Navbar from './components/commonViews/Header.jsx';
 import GenreView from './components/genresView/GenreView.jsx';
 import GalleryView from './components/galleryView/GalleryView.jsx';

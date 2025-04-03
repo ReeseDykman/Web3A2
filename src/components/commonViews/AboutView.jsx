@@ -1,8 +1,17 @@
+// Authour: Christopher Nottingham & Reese Dykman
+// Description: This component is the about page for the app.
+
 
 const AboutView = () => {
     return (
+        // The overall container for the about section
         <div className="about sky bg-sky-500 items-center justify-center text-white m-6 p-6 rounded-lg shadow-md">
+            
+
+             {/* The title of the section in large bold font */}
             <h1 className="text-2xl text-center font-bold">About the App</h1>
+
+            {/* The the tabbed overall description */}
             <p> &nbsp; This app was made to help assist art enthusiasts
                 find detailed information about genres of art, galleries,
                 and paintings all around the world.
@@ -13,9 +22,13 @@ const AboutView = () => {
                 page from a user query,
                 a colmbination of both state and effect management React API's were used.
             </p>
+            {/* Forcing a new line */}
             <br />
+
             <p className="test-bold">We hope you enjoy using this app as much as we enjoyed making it!</p>
             <br />
+            
+            {/* Providing the viewers with the developers who made the SPA */}
             <h2 className="text-xl text-center font-semibold ">Developers</h2>
             <p>Reese Dykman: <a href="mailto:rdykm626@mtroyal.ca">rdykm626@mtroyal.ca</a></p>
             <p>Christopher Nottingham <a href="mailto:cnott729@mtroyal.ca">cnott729@mtroyal.ca</a></p>
@@ -23,4 +36,5 @@ const AboutView = () => {
 
     );
 }
+// Exporting the component to be used in other parts of the app
 export default AboutView;
