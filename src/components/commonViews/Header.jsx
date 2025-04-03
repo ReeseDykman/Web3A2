@@ -1,7 +1,7 @@
 // Developer: Christopher Nottingham
 // Description: This component is used to display the header of the application. 
 
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
 import { useContext, useState } from 'react';
 import { GalleriesFavoritesContext } from "../../App.jsx";
 import { ArtistsFavoritesContext } from "../../App.jsx";
@@ -54,6 +54,11 @@ const Navbar = () => {
                     <li>
                         <NavLink to="/paintings" className="text-white px-3 py-2 rounded hover:bg-gray-200 hover:text-black">
                             Paintings
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/artists" className="text-white px-3 py-2 rounded hover:bg-gray-200 hover:text-black">
+                            Artists
                         </NavLink>
                     </li>
                     <li>

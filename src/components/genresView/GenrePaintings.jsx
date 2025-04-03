@@ -1,12 +1,30 @@
 // Developer: Christopher Nottingham
 // Description: This component displays the paintings for the selected genre passed down with props in the Genre View.
 import { useState, useEffect } from "react";
+import PaintingsModal from "../paintingsView/PaintingsModal.jsx";
 
 const GenrePaintings = (props) => {
 
-  // State to hold the sorted paintings
-  const [sortedPaintings, setSortedPaintings] = useState(props.data);
+  // Creating a state variable to a boolean to keep track of whether the modal is open or not
+  const [modalOpen, setModalOpen] = useState(false);
 
+   // Creating a state variable to keep track of the selected painting
+   const [selectedPainting, setSelectedPainting] = useState(null);
+
+  // Reese's function to close the modal and reset the selected painting
+  const closeModal = () => {
+    setModalOpen(false);
+    setSelectedPainting(null);
+  }
+
+  // State to hold the sorted paintings
+  const [sortedPaintings, setSortedPaintings] = useState([]);
+
+  // Reese's function to desplay the selected painting in the modal
+  const handleRowClick = (painting) => {
+    setModalOpen(true);
+    setSelectedPainting(painting);
+  }
   // Ensuring the sorted paintings are updated when the props change
   useEffect(() => {
     setSortedPaintings(props.data);
@@ -75,7 +93,7 @@ const GenrePaintings = (props) => {
           <tbody>
             {/* Mapping through the sorted paintings array to display each painting */}
             {sortedPaintings.map((p) => (
-              <tr key={p.paintingId} className="border-t hover:bg-gray-100">
+              <tr onClick={() => {handleRowClick(p)}} key={p.paintingId} className="border-t hover:bg-gray-100">
                 <td className="px-4 py-2">
                   <img
                     src={`src/assets/art-images/paintings/square/${p.imageFileName}.jpg`}
@@ -92,6 +110,9 @@ const GenrePaintings = (props) => {
           </tbody>
         </table>
       </div>
+      {/* Using Reese's Painting Modal to show the clicked painting  */}
+      <PaintingsModal className="z-10" open={modalOpen} onClose={closeModal} painting={selectedPainting} />
+
     </div>
   );
 };

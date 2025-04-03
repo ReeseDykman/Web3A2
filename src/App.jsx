@@ -5,6 +5,8 @@ import Login from './components/commonViews/Login.jsx';
 import Navbar from './components/commonViews/Header.jsx';
 import GenreView from './components/genresView/GenreView.jsx';
 import GalleryView from './components/galleryView/GalleryView.jsx';
+import ArtistsView from './components/artistsView/ArtistsView.jsx';
+import PaintingsView from './components/paintingsView/PaintingsView.jsx';
 import supabase from './scripts/supabaseClient.js';
 import AboutView from './components/commonViews/AboutView.jsx';
 import FavoritesView from './components/commonViews/FavoritesView.jsx';
@@ -19,7 +21,6 @@ export const ErasContext = createContext();
 export const GalleriesFavoritesContext = createContext();
 export const ArtistsFavoritesContext = createContext();
 export const PaintingsFavoritesContext = createContext();
-import PaintingsView from './components/paintingsView/PaintingsView.jsx';
 
 
 function App() {
@@ -59,15 +60,26 @@ function App() {
 
   async function getPaintings() {
     if (localStorage.getItem("paintings") == null) {
-      const { data, error } = await supabase
-        .from("Paintings")
-        .select("artistId, paintingId, galleryId,imageFileName,title,shapeId,museumLink,accessionNumber,copyrightText,description,excerpt,yearOfWork,width,height,medium,cost,MSRP,googleLink,googleDescription,wikiLink,jsonAnnotations, Artists!inner(firstName, lastName, nationality, yearOfBirth, yearOfDeath, details, artistLink), Galleries!inner(galleryName,galleryNativeName,galleryCity,galleryAddress,galleryCountry,latitude,longitude,galleryWebSite,flickrPlaceId,yahooWoeId,googlePlaceId)")
-      if (error) {
-        console.error("Error fetching paintings:", error);
-        return;
-      }
-      localStorage.setItem("paintings", JSON.stringify(data));
-      setPaintings(data);
+        const { data, error } = await supabase
+            .from("Paintings")
+            .select(
+                "paintingId,imageFileName,title,shapeId,museumLink,accessionNumber,copyrightText,description,excerpt,yearOfWork,width,height,medium,cost,MSRP,googleLink,googleDescription,wikiLink,jsonAnnotations, Artists!inner(firstName, lastName, nationality, yearOfBirth, yearOfDeath, details, artistLink), Galleries!inner(galleryName,galleryNativeName,galleryCity,galleryAddress,galleryCountry,latitude,longitude,galleryWebSite,flickrPlaceId,yahooWoeId,googlePlaceId)"
+            );
+
+        if (error) {
+            console.error("Error fetching paintings:", error);
+            return;
+        }
+
+        // Supabase sort is not case insensitive, so we sort it here
+        const sortedData = data.sort((a, b) => {
+            const titleA = a.title.toLowerCase().trim().replace(/ /g, "");
+            const titleB = b.title.toLowerCase().trim().replace(/ /g, "");
+            return titleA < titleB ? -1 : titleA > titleB ? 1 : 0;
+        });
+
+        localStorage.setItem("paintings", JSON.stringify(sortedData));
+        setPaintings(sortedData);
     } else {
         const loadData = JSON.parse(localStorage.getItem("paintings"));
         setPaintings(loadData);
@@ -86,17 +98,16 @@ async function getGalleries() {
 
 }
 
-async function getArtists() {
-  if (localStorage.getItem("artists") == null) {
-    const { data, error } = await supabase.from("Artists")
-    .select("firstName, lastName, nationality, yearOfBirth, yearOfDeath, details, artistLink, Paintings!inner(paintingId,imageFileName,title,shapeId,museumLink,accessionNumber,copyrightText,description,excerpt,yearOfWork,width,height,medium,cost,MSRP,googleLink,googleDescription,wikiLink,jsonAnnotations)").order("lastName", { ascending: true });
-if (error) {
-console.error("Error fetching artists:", error);
-}
-    localStorage.setItem("artists", JSON.stringify(data));
-    setArtists(data);
-  } else {
-
+  async function getArtists() {
+    if (localStorage.getItem("artists") == null) {
+      const { data, error } = await supabase.from("Artists")
+                      .select("firstName, lastName, nationality, yearOfBirth, yearOfDeath, details, artistLink, Paintings!inner(paintingId,imageFileName,title,shapeId,museumLink,accessionNumber,copyrightText,description,excerpt,yearOfWork,width,height,medium,cost,MSRP,googleLink,googleDescription,wikiLink,jsonAnnotations)").order("lastName", { ascending: true });
+      if (error) {
+        console.error("Error fetching artists:", error);
+      }
+      localStorage.setItem("artists", JSON.stringify(data));
+      setArtists(data);
+    } else {
     setArtists(JSON.parse(localStorage.getItem("artists")));
   }
 
@@ -190,7 +201,7 @@ useEffect(() => {
                             element={loggedIn ? <Navigate to="/paintings" /> : <Login handleLogin={handleLogin} />} />
                           <Route path="/galleries" element={loggedIn ? <GalleryView /> : <Navigate to="/login" />} />
                           <Route path="/artists"
-                            element={loggedIn ? (<h1 className="text-4xl text-center font-bold p-8">Artists</h1>) : (
+                            element={loggedIn ? (<ArtistsView/>) : (
                               <Navigate to="/login" />)} />
                           <Route path="/genres" element={loggedIn ? <GenreView /> : <Navigate to="/login" />} />
                           <Route path="/paintings"
