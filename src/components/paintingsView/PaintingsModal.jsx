@@ -65,15 +65,20 @@ const PaintingsModal = (props) => {
                                 }}
                                 onLoad={() => setIsLoading(false)}
                             />
-                            <button onClick={handleFavoriteClick} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Add to Favorites</button>
+                            <button onClick={handleFavoriteClick} className="w-full text-center bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Add to Favorites</button>
+                            <a href={props.painting.museumLink} target="_blank" className="w-full text-center bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 transition">Visit Museum</a>
+                            {/* Only create wiki link if there is one */}
+                            {props.painting.wikiLink && <a href={props.painting.wikiLink} target="_blank" className="w-full text-center bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 transition">Visit Wiki Page</a>}
                         </div>
                         <div className="flex flex-col gap-4 flex-grow">
                             <h1 className="text-2xl font-bold">{props.painting.title}</h1>
                             <h2 className="text-lg font-semibold">{`${props.painting.Artists.firstName} ${props.painting.Artists.lastName}`}</h2>
+                            <h3 className="text-lg font-semibold">{props.painting.yearOfWork}</h3>
                             <p>{props.painting.description == "" ? "No description available." : props.painting.description}</p>
                             <p>{props.painting.medium}</p>
                             <div className="flex flex-row gap-4 items-center justify-between">
                                 <p>{`${props.painting.width} x ${props.painting.height}`}</p>
+                                <p className="text-xs text-gray-400">{props.painting.copyrightText}</p>
                                 <button onClick={props.onClose} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">close</button>
                             </div>
                         </div>

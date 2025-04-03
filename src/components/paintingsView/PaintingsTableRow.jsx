@@ -9,7 +9,7 @@ const PaintingsTableRow = (props) => {
         <tr className="bg-white w-full h-full hover:bg-gray-100 hover:shadow-md transition duration-200" onClick={handleRowClick}>
             <td className="p-5 text-center">
                 <img
-                    src={`https://res.cloudinary.com/funwebdev/image/upload/h_500/art/paintings/${painting.imageFileName}.jpg`}
+                    src={`src/assets/art-images/paintings/square/${painting.imageFileName}.jpg`}
                     alt={painting.title}
                     onError={(e) => {
                         e.target.onerror = null;
