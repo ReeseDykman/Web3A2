@@ -58,13 +58,14 @@ const ArtistsView = () => {
 
     const handleArtistClick = (artist) => {
         setSelectedArtist(artist);
-        const filteredPaintings = paintings.filter((painting) => painting.Artists.artistId === artist.artistId);
+        const toFilter = [...paintings]
+        const filteredPaintings = toFilter.filter((painting) => painting.Artists.artistId === artist.artistId);
         handleSort(sort, filteredPaintings);
     }
 
     const handleBackButton = () => {
         setSelectedArtist(null);
-        setArtistPaintings(paintings);
+        handleSort(sort, [...paintings]);
     }
 
     const handleSearch = (e) => {
@@ -83,15 +84,15 @@ const ArtistsView = () => {
             <div className="flex-1 bg-gray-100 shadow-md rounded p-4 h-167 overflow-hidden">
                 <input onChange={handleSearch} type="text" placeholder="Search for an artist..." className="w-full p-2 border border-gray-300 rounded mb-4" />
                 <ul className="list-none space-y-2 overflow-y-auto h-full">
-                    {artistSearch.map((artist) => (
+                    {artistSearch.map((artist, index) => (
                         <li
-                            key={artist.artistId}
+                            key={artist.artistId ? `${artist.artistId}Li` : `${index}Li`}
                             className="cursor-pointer p-3 bg-white rounded shadow hover:bg-gray-100 hover:shadow-md transition-all"
                             onClick={() => {
                                 handleArtistClick(artist);
                             }}>
 
-                            <span className="text-lg font-medium text-gray-800">
+                            <span key={artist.artistId ? `${artist.artistId}Span` : `${index}Span`} className="text-lg font-medium text-gray-800">
                                 {`${artist.firstName} ${artist.lastName}`}
                             </span>
                         </li>
