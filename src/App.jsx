@@ -5,7 +5,7 @@ import Login from './components/commonViews/Login.jsx';
 import Navbar from './components/commonViews/Header.jsx';
 import GenreView from './components/genresView/GenreView.jsx';
 import GalleryView from './components/galleryView/GalleryView.jsx';
-import ArtistsView from './components/artistsView/ArtistsView.jsx';
+import ArtistsView from './components/artistsView/artistsView.jsx';
 import PaintingsView from './components/paintingsView/PaintingsView.jsx';
 import supabase from './scripts/supabaseClient.js';
 import AboutView from './components/commonViews/AboutView.jsx';
