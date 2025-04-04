@@ -9,7 +9,7 @@ const GenreInfo = (props) => {
             <div> </div>
         ) : (
             // Displaying the genre info if there is a genre selected 
-            <div className="flex text-white m-6 p-2 rounded bg-sky-500 flex-col border gap-4">
+            <div className="flex text-black m-6 p-2 rounded-lg bg-gray-400 flex-col gap-4">
                 <h1 className="text-2xl font-bold">{props.data.genreName}</h1>
                 <p> Description: {props.data.description}</p>
             </div>

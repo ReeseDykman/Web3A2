@@ -48,17 +48,17 @@ const GenreView = () => {
     <div className="flex h-screen overflow-hidden">
 
       {/* Sidebar for the genre list */}
-      <div className="w-1/3  text-white">
+      <div className="w-1/3  text-black">
         <GenreList update={clickedGenre} data={genres} />
       </div>
 
       {/* Overall component for when the specific gallery information */}
-      <div className="w-2/3 flex flex-col overflow-y-auto bg-gray-100">
+      <div className="w-2/3 flex flex-col overflow-y-auto ">
 
         {/* Using a ternerary operator to change the layout of whether or not the user has clicked on a genre from the Genre List.
-         If the user has not clicked on a genre..displayPaintings will be null due to the clickedGenre function.  */} 
+         If the user has not clicked on a genre..displayPaintings will be null due to the clickedGenre function.  */}
         {displayPaintings.length === 0 ? (
-          <div className="p-6">
+          <div className="p-6 bg-gray-400 rounded-lg m-6">
             <h2 className="text-2xl font-bold">No genre selected.</h2>
             <p className="text-gray-700">Please select a genre to view its details.</p>
           </div>
@@ -66,7 +66,7 @@ const GenreView = () => {
           // If the user has clicked on a genre, display the clicked genre information and relavent paintings.
           <div>
             <GenreInfo data={displayGenre} />
-            <div className="flex-1 overflow-y-auto px-6 pb-6">
+            <div className="flex-1 space-y-2 overflow-y-auto px-6 pb-6">
               <GenrePaintings data={displayPaintings} />
             </div>
           </div>

@@ -10,17 +10,17 @@ import GalleryInfo from "./GalleryInfo.jsx";
 
 const GalleryView = () => {
 
-// Using context to access the galleries and paintings
+  // Using context to access the galleries and paintings
   const { galleries } = useContext(GalleriesContext);
   const { paintings } = useContext(PaintingsContext);
 
 
-// Creating a state variables to keep track of the selected gallery and the respective paintings to display
+  // Creating a state variables to keep track of the selected gallery and the respective paintings to display
   const [selectedGallery, setSelectedGallery] = useState([])
   const [galleryPaintings, setGalleryPaintings] = useState([])
 
 
-// Function to get the selected gallery and find the respective painings
+  // Function to get the selected gallery and find the respective painings
   const handleClick = (props) => {
 
 
@@ -33,7 +33,7 @@ const GalleryView = () => {
     // Saving the found information to the state variables
     setGalleryPaintings(paintingsArray);
     setSelectedGallery(foundGallery);
-    
+
 
   }
 

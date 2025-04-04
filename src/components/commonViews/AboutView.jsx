@@ -1,11 +1,11 @@
 // Developer: Christopher Nottingham & Reese Dykman
-// Description: This component is the about page for the app.
-
+// Description: This component is the about page for the app which provides the developers point of contact
+// why and how it was made and the links to the code used if we did not know how to approach it.
 
 const AboutView = () => {
     return (
         // The overall container for the about section
-        <div className="about sky bg-sky-500 items-center justify-center text-white m-6 p-6 rounded-lg shadow-md">
+        <div className=" bg-gray-400 items-center justify-center text-black m-6 p-6 rounded-lg ">
 
 
             {/* The title of the section in large bold font */}
@@ -34,19 +34,19 @@ const AboutView = () => {
             <p><a target="_blank" href="https://react-leaflet.js.org/docs/start-setup/">Assistance with Leaflet - Official documentation</a></p>
 
             <p>
-                <a target="_blank" href="https://www.youtube.com/watch?v=jD6813wGdBA"> YOUTUBE - Alejandro AO - Software & Ai :  React Leaflet Tutorial for Beginners `(2023)` </a>
+                <a target="_blank" href="https://www.youtube.com/watch?v=jD6813wGdBA"> YOUTUBE - Alejandro AO - Software & Ai :  React Leaflet Tutorial for Beginners (2023) </a>
             </p>
             <br />
             <h3>Page: Paintings - Paintings Modal </h3>
             <h3>
-                <p> <a target="_blank" href="https://www.youtube.com/watch?v=dEGbXY-8YtU&ab_channel=YourCodeLab">"YOUR CODE LAB" YOUTUBE</a></p>
+                <p> <a target="_blank" href="https://www.youtube.com/watch?v=dEGbXY-8YtU&ab_channel=YourCodeLab">YOUTUBE - YOUR CODE LAB : Build a Modal Component purely in ReactJS and TailwindCSS </a></p>
             </h3>
             <br />
 
             {/* Providing the viewers with the developers who made the SPA */}
             <h2 className="text-xl text-center font-semibold ">Developers</h2>
-            <p>Reese Dykman: <a href="mailto:rdykm626@mtroyal.ca">rdykm626@mtroyal.ca</a></p>
-            <p>Christopher Nottingham <a href="mailto:cnott729@mtroyal.ca">cnott729@mtroyal.ca</a></p>
+            <p>Reese Dykman:<a href="mailto:rdykm626@mtroyal.ca">rdykm626@mtroyal.ca</a></p>
+            <p>Christopher Nottingham:<a href="mailto:cnott729@mtroyal.ca">cnott729@mtroyal.ca</a></p>
         </div >
 
     );
