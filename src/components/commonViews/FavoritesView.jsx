@@ -101,7 +101,7 @@ const FavoriteView = () => {
               <tbody>
                 {artistsFavorites.map((artist) => (
                   <tr key={artist.artistId} className="border-b">
-                    <td className="py-2">{artist.artistName}</td>
+                    <td className="py-2">{artist.firstName} {artist.lastName}</td>
                     <td className="py-2 text-right">
                       <button onClick={() => removeArtist(artist.artistId)} className="text-red-500 hover:text-red-700 text-sm" >
                         Remove

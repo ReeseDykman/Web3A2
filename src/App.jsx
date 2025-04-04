@@ -101,7 +101,7 @@ async function getGalleries() {
   async function getArtists() {
     if (localStorage.getItem("artists") == null) {
       const { data, error } = await supabase.from("Artists")
-                      .select("artistId, firstName, lastName, nationality, yearOfBirth, yearOfDeath, details, artistLink, Paintings!inner(paintingId,imageFileName,title,shapeId,museumLink,accessionNumber,copyrightText,description,excerpt,yearOfWork,width,height,medium,cost,MSRP,googleLink,googleDescription,wikiLink,jsonAnnotations)").order("lastName", { ascending: true });
+                      .select("artistId, firstName, lastName, gender, nationality, yearOfBirth, yearOfDeath, details, artistLink, Paintings!inner(paintingId,imageFileName,title,shapeId,museumLink,accessionNumber,copyrightText,description,excerpt,yearOfWork,width,height,medium,cost,MSRP,googleLink,googleDescription,wikiLink,jsonAnnotations)").order("lastName", { ascending: true });
       if (error) {
         console.error("Error fetching artists:", error);
       }
@@ -148,6 +148,7 @@ async function getGenre() {
   } else {
     setPaintingsFavorites(JSON.parse(localStorage.getItem("paintingFavorites")));
   }
+  console.log("Artists favorites", artistsFavorites);
 }
 
 
@@ -176,25 +177,18 @@ useEffect(() => {
 
 
   return (
-     <ArtistsContext.Provider value={{ artists, setArtists }}>
-          <PaintingGenresContext.Provider value={{ paintingGenres, setPaintingGenres }}>
-            <GenresContext.Provider value={{ genres, setGenres }}>
-              <PaintingsContext.Provider value={{ paintings, setPaintings }}>
-                <GalleriesContext.Provider value={{ galleries, setGalleries }}>
-                  <PaintingsFavoritesContext.Provider value={{ paintingsFavorites, setPaintingsFavorites }}>
-                   <GalleriesFavoritesContext.Provider value={{ galleryFavorites, setGalleryFavorites }}>
-                    <ArtistsFavoritesContext.Provider value={{ artistsFavorites, setArtistsFavorites }}>
+    <ArtistsContext.Provider value={{ artists, setArtists }}>
+      <PaintingGenresContext.Provider value={{ paintingGenres, setPaintingGenres }}>
+        <GenresContext.Provider value={{ genres, setGenres }}>
+          <PaintingsContext.Provider value={{ paintings, setPaintings }}>
+            <GalleriesContext.Provider value={{ galleries, setGalleries }}>
+              <PaintingsFavoritesContext.Provider value={{ paintingsFavorites, setPaintingsFavorites }}>
+                <GalleriesFavoritesContext.Provider value={{ galleryFavorites, setGalleryFavorites }}>
+                  <ArtistsFavoritesContext.Provider value={{ artistsFavorites, setArtistsFavorites }}>
                     <ErasContext.Provider value={{ eras, setEras }}>
-
-
-
-
-
-
-
-                  <main className="max-w-screen min-h-screen">
-
-                  {loggedIn && <Navbar />}
+                      {console.log("Favorite Artists", artistsFavorites)}
+                      <main className="max-w-screen min-h-screen flex flex-col ">
+                        {loggedIn && <Navbar />}
                         <Routes>
                           <Route path="/" element={<Navigate to="/login" />} />
                           <Route path="/login"
