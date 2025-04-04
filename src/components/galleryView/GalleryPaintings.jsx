@@ -36,14 +36,19 @@ const GalleryPaintings = (props) => {
 
         // Create a copy of the data array to avoid mutating the original
         const sortedPaintings = [...paintings];
-
+        console.log(sortedPaintings);
         if (sortBy === "artistSortButton") {
+            // sorting the array by the artist last name since most artist will most likely 
+            // be known for their last name
             sortedPaintings.sort((a, b) => {
-                return a.Artists.firstName.localeCompare(b.Artists.firstName)
+                return a.Artists.lastName.localeCompare(b.Artists.lastName)
             });
         } else if (sortBy === "titleSortButton") {
+            // Sorting the array by the painting title
             sortedPaintings.sort((a, b) => a.title.localeCompare(b.title));
         } else if (sortBy === "yearSortButton") {
+            // Sorting the array by year of work..the newer the painting the higher 
+            // it will be on the list
             sortedPaintings.sort((a, b) => b.yearOfWork - a.yearOfWork);
         }
         // Store the new sorted array in state
@@ -55,28 +60,29 @@ const GalleryPaintings = (props) => {
         <div>
 
             {/* The container for the sorting buttons */}
-            <div className="flex text-black items-center justify-center mb-4">
+            <div className="flex  items-center justify-center mb-4">
 
                 <div className="flex gap-2 text-black text-sm">
-                    <button type="button" name="artistSortButton" onClick={handleSortClick} className=" hover:text-white">Sort by Artist</button>
-                    <button type="button" name="titleSortButton" onClick={handleSortClick} className="hover:text-white">Sort by Title</button>
-                    <button type="button" name="yearSortButton" onClick={handleSortClick} className="hover:text-white">Sort by Year</button>
+                    Sorting: 
+                    <button type="button" name="artistSortButton" onClick={handleSortClick} className=" text-black hover:text-white">Sort by Artist</button>
+                    <button type="button" name="titleSortButton" onClick={handleSortClick} className="text-black hover:text-white">Sort by Title</button>
+                    <button type="button" name="yearSortButton" onClick={handleSortClick} className="text-black hover:text-white">Sort by Year</button>
                 </div>
 
             </div>
 
-            <div className="p-4 border text-black rounded ">
+            <div className="p-4 border  text-black rounded ">
                 {/* Using the ternary operator to either show a simple message if nothing has no gallery has been clicked */}
                 {props.paintings.length === 0 ? (
                     <p className="text-black">No paintings available.</p>
                 ) : (
                     // If there are paintings available, then display them in a list
-                    <ul className="space-y-4">
+                    <ul className="space-y-4 bg-gray-400">
                         {/* Using the map function to create a the painting card */}
                         {props.paintings.map((p) => (
                             <li onClick={() => { handleRowClick(p) }} key={p.paintingId} className="flex gap-4  mb-3  p-2 ">
                                 <div className="w-16 h-16 flex-shrink-0 flex rounded overflow-hidden">
-                                    
+
                                     <img
                                         src={`src/assets/art-images/paintings/full/${p.imageFileName}.jpg`}
                                         alt={p.title}

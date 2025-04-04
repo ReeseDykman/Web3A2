@@ -58,10 +58,10 @@ const GenrePaintings = (props) => {
     <div className="flex flex-col h-105">
 
       {/* Header for sorting that make sure it the sorting buttons are visable while the user is scrolling through the paintings  */}
-      <div className="flex justify-between items-center p-2 bg-gray-100  sticky top-0">
+      <div className="flex  justify-between mb-2 items-center p-2  bg-gray-400 text-black rounded-lg  sticky top-0">
 
 
-        <h2 className="text-xl font-semibold text-gray-800">Paintings</h2>
+        <h2 className="text-xl font-semibold text-black">Paintings</h2>
 
         {/* Container for buttons */}
         <div className="flex gap-4 text-sm text-black">
@@ -78,10 +78,10 @@ const GenrePaintings = (props) => {
       </div>
 
       {/* Overall container for the table */}
-      <div className="overflow-y-auto flex-1 border rounded">
-        <table className="w-full table-auto border-collapse">
+      <div className="overflow-y-auto  flex-1 rounded-lg bg-gray-400 text-black rounded-lg">
+        <table className="w-full  border-collapse">
           {/* Header for the table class name sticky is used to keep it in fixed whilst the user scrolls*/}
-          <thead className="sticky top-0 bg-white shadow">
+          <thead className="sticky top-0 bg-gray-400 text-black rounded-lg">
             <tr>
               <th className="px-4 py-2 text-left">Thumbnail</th>
               <th className="px-4 py-2 text-left">Title</th>
@@ -93,7 +93,7 @@ const GenrePaintings = (props) => {
           <tbody>
             {/* Mapping through the sorted paintings array to display each painting */}
             {sortedPaintings.map((p) => (
-              <tr onClick={() => {handleRowClick(p)}} key={p.paintingId} className="border-t hover:bg-gray-100">
+              <tr onClick={() => {handleRowClick(p)}} key={p.paintingId} className="border-t bg-white hover:bg-gray-100">
                 <td className="px-4 py-2">
                   <img
                     src={`src/assets/art-images/paintings/square/${p.imageFileName}.jpg`}

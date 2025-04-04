@@ -1,3 +1,6 @@
+// Developer:  Christopher Nottingham
+// Description: This component is used to display the gallery information and their respective paintings in the Gallery View.
+
 import GalleryPaintings from "./GalleryPaintings";
 import "leaflet/dist/leaflet.css";
 import { GalleriesFavoritesContext } from "../../App.jsx";
@@ -8,52 +11,42 @@ import { MapContainer, TileLayer, Marker } from 'react-leaflet'
 const GalleryInfo = (props) => {
 
 
-  //  Using context to access the gallery favorites
+  //  Ussing context to access the gallery favorites
   const { galleryFavorites, setGalleryFavorites } = useContext(GalleriesFavoritesContext);
 
-  // 
+  // Event handler function to handle adding the gallery to the favorites
   const addGalleryToFavorites = (gallery) => {
-    // some is like find but instead returns true or false instead of the object
+    // Some is like find but instead returns true or false instead of the object
     const isFound = galleryFavorites.some((g) => g.galleryId == gallery.galleryId);
 
-    // if isFound is true, then skip adding the gallery to the favorites to avoid duplicates
+    // If isFound is true, then skip adding the gallery to the favorites to avoid duplicates
     if (isFound) {
       return galleryFavorites;
     }
-    // if isFound is false, then add the gallery to the favorites
+    // If isFound is false, then add the gallery to the favorites
     else {
 
       const updatedGalFav = [...galleryFavorites, gallery];
 
-      // update the local storage and state with new gallery favorites
+      // Update the local storage and state with new gallery favorites
       localStorage.setItem("galleryFavorites", JSON.stringify(updatedGalFav));
       setGalleryFavorites(updatedGalFav);
 
-      // return the updated gallery favorites
+      // Return the updated gallery favorites
       return updatedGalFav;
     }
 
   };
 
-
-// if the there has been no gallery selected form the gallery list, then display this message where the gallery info would be
-  if (!props.gallery) {
-    return (
-      <div className="flex-1 border mt-6 p-4 rounded-lg shadow-sm">
-        <p className="text-black italic">Select a gallery to view details.</p>
-      </div>
-    );
-  }
-
   return (
     // The overall container for the gallery info
-    <div className="flex gap-6 mt-6 w-2/3">
+    <div className="flex  gap-6 mt-6 w-2/3">
       {/* Creating the gallery info container.
       The gallery info container is split into two sections, one for the 
       gallery info and one for the gallery paintings.
       Adding visual to differntiate the the two components.   */}
       <div className="w-1/2 space-y-4">
-        <div className="bg-sky-500 p-4 rounded-lg shadow flex flex-col items-center justify-center text-center">
+        <div className="bg-gray-400 p-4 rounded-lg shadow flex flex-col items-center justify-center text-center">
           {/* Ternary operator to hide the gallery paitings and info if no gallery is clicked.
           If there is a gallery selected then display the gallery info and map.
           */}
@@ -104,19 +97,19 @@ const GalleryInfo = (props) => {
           ) : (
             // If no gallery is selected, display this message and no gallery paintings container
             <div>
-              <h2 className="text-2xl font-bold">No gallery selected.</h2>
+              <h2 className="text-2xl text-black font-bold">No gallery selected.</h2>
               <p>Please select a gallery to view its details.</p>
-              <p className="italic text-gray-600 mt-1">No map available.</p>
+              <p className="italic text-black ">No map available.</p>
             </div>
           )}
         </div>
       </div>
 
       {/* Creating the GalleryPaintings contanier */}
-      <div className="w-1/2 bg-sky-500 p-4 rounded-lg shadow text-black">
+      <div className="w-1/2 bg-gray-400 p-4 rounded-lg text-black">
 
         {/* prop passing the paintings array and the selected gallery paintings */}
-        <GalleryPaintings
+        <GalleryPaintings className="bg-gray-400"
           paintings={props.paintings}
           setGalleryPaintings={props.setGalleryPaintings}
         />
@@ -125,4 +118,5 @@ const GalleryInfo = (props) => {
   );
 };
 
+// Exporting the GalleryInfo component 
 export default GalleryInfo;
