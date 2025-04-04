@@ -84,7 +84,7 @@ const GalleryPaintings = (props) => {
                                 <div className="w-16 h-16 flex-shrink-0 flex rounded overflow-hidden">
 
                                     <img
-                                        src={`src/assets/art-images/paintings/full/${p.imageFileName}.jpg`}
+                                        src={`art-images/paintings/full/${p.imageFileName}.jpg`}
                                         alt={p.title}
                                         className="w-full h-full object-cover"
                                         onError={(e) => {

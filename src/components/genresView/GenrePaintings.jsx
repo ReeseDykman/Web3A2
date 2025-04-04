@@ -96,7 +96,7 @@ const GenrePaintings = (props) => {
               <tr onClick={() => {handleRowClick(p)}} key={p.paintingId} className="border-t bg-white hover:bg-gray-100">
                 <td className="px-4 py-2">
                   <img
-                    src={`src/assets/art-images/paintings/square/${p.imageFileName}.jpg`}
+                    src={`art-images/paintings/square/${p.imageFileName}.jpg`}
                     alt={p.title} className="w-16 h-16 object-cover rounded" />
                 </td>
                 {/* Displaying the painting title, year of work, and artist name */}

@@ -48,7 +48,7 @@ const ArtistCard = (props) => {
                 <div className="flex flex-col items-center gap-6 h-full">
                     {/* Artist image with fallback for missing images */}
                     <img
-                        src={`src/assets/art-images/artists/square/${selectedArtist.artistId}.jpg`}
+                        src={`art-images/artists/square/${selectedArtist.artistId}.jpg`}
                         alt={selectedArtist.lastName}
                         onError={(e) => {
                             e.target.onerror = null;

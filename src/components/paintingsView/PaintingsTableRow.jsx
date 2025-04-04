@@ -14,7 +14,7 @@ const PaintingsTableRow = (props) => {
             {/* Painting image */}
             <td className="p-5 text-center">
                 <img
-                    src={`src/assets/art-images/paintings/square/${painting.imageFileName}.jpg`}
+                    src={`art-images/paintings/square/${painting.imageFileName}.jpg`}
                     alt={painting.title}
                     onError={(e) => {
                         // Fallback for missing image

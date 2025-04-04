@@ -56,7 +56,7 @@ const PaintingsModal = (props) => {
                                 <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
                             )}
                             <img
-                                src={`src/assets/art-images/paintings/square/${props.painting.imageFileName}.jpg`}
+                                src={`art-images/paintings/square/${props.painting.imageFileName}.jpg`}
                                 alt={props.painting.title}
                                 className={`object-cover ${isLoading ? "hidden" : "block"}`}
                                 onError={(e) => {
