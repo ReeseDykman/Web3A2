@@ -22,46 +22,46 @@ const PaintingsTable = (props) => {
     };
 
     return (
-        <div className="h-full overflow-y-auto overflow-x-auto">
-            <table className="w-full border-collapse border border-gray-300">
-                <thead className="bg-gray-200">
+        <div className="h-full overflow-y-auto overflow-x-autos">
+            <table className="w-full border-collapse">
+                <thead className="bg-green-100">
                     <tr>
                         {/* Header for Thumbnail */}
-                        <th className="p-5 text-center border border-gray-300">
+                        <th className="p-5 text-center">
                             <span>Thumbnail</span>
                         </th>
                         {/* Header for Title */}
-                        <th className="p-5 text-center border border-gray-300">
+                        <th className="p-5 text-center">
                             <div className="flex items-center justify-center gap-2">
                                 <span>Title</span>
                                 <SortButton row="Title" handleSort={props.handleSort} sort={props.sort} />
                             </div>
                         </th>
                         {/* Header for Artist */}
-                        <th className="p-5 text-center border border-gray-300">
+                        <th className="p-5 text-center">
                             <div className="flex items-center justify-center gap-2">
                                 <span>Artist</span>
                                 <SortButton row="Artist" handleSort={props.handleSort} sort={props.sort} />
                             </div>
                         </th>
                         {/* Header for Year */}
-                        <th className="p-5 text-center border border-gray-300">
+                        <th className="p-5 text-center">
                             <div className="flex items-center justify-center gap-2">
                                 <span>Year</span>
                                 <SortButton row="Year" handleSort={props.handleSort} sort={props.sort} />
                             </div>
                         </th>
                         {/* Header for Gallery */}
-                        <th className="p-5 text-center border border-gray-300">
+                        <th className="p-5 text-center">
                             <div className="flex items-center justify-center gap-2">
                                 <span>Gallery</span>
                                 <SortButton row="Gallery" handleSort={props.handleSort} sort={props.sort} />
                             </div>
                         </th>
                         {/* Header for Medium */}
-                        <th className="p-5 text-center border border-gray-300">Medium</th>
+                        <th className="p-5 text-center">Medium</th>
                         {/* Header for Dimensions */}
-                        <th className="p-5 text-center border border-gray-300">Dimensions</th>
+                        <th className="p-5 text-center">Dimensions</th>
                     </tr>
                 </thead>
                 <tbody className="bg-white">

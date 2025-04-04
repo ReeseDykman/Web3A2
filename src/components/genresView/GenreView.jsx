@@ -9,7 +9,8 @@ import { GenresContext } from "../../App.jsx";
 import { PaintingGenresContext } from "../../App.jsx";
 import { PaintingsContext } from "../../App.jsx";
 import GenreInfo from "./GenreInfo.jsx";
-import GenrePaintings from "./GenrePaintings.jsx";
+import PaintingsTable from "../paintingsView/PaintingsTable.jsx";
+import filter from "../../scripts/filterFactory.js";
 
 // This component is used to display the genre view of the application.
 const GenreView = () => {
@@ -22,6 +23,7 @@ const GenreView = () => {
   // Using state to keep track of the selected genre and the respective paintings paintings to display
   const [displayPaintings, setDisplayPaintings] = useState([]);
   const [displayGenre, setDisplayGenre] = useState(null);
+  const [sort, setSort] = useState(new filter("Title", "asc"));
 
 
   const clickedGenre = (props) => {
@@ -37,11 +39,53 @@ const GenreView = () => {
     const tempGenre = genres.find((g) => g.genreId === props);
 
     // Setting the display paintings to the filtered paintings
-    setDisplayPaintings(tempPaintings);
+    handleSort(sort,tempPaintings);
 
     // Setting the display genre to the selected genre
     setDisplayGenre(tempGenre);
   };
+
+  const handleSort = ({ field, value }, paintings) => {
+    setSort(new filter(field, value));
+
+    //Returns the proper field in the json
+    const fieldMapping = {
+        title: (painting) => painting.title,
+        artist: (painting) => `${painting.Artists.firstName} ${painting.Artists.lastName}`,
+        gallery: (painting) => painting.Galleries.galleryName,
+        year: (painting) => painting.yearOfWork,
+    };
+
+    if (!paintings) {
+        paintings = [...displayPaintings];
+    }
+
+    const sortedPaintings = paintings.sort((a, b) => {
+        let aValue, bValue;
+
+        //get the function for the field and pass the painting to it
+        aValue = fieldMapping[field.toLowerCase()](a) || "";
+        bValue = fieldMapping[field.toLowerCase()](b) || "";
+
+        // Years are numbers, so we need to handle them differently but we can compare them directly
+        //if ascending, subtract a from b, if descending, subtract b from a
+        if (typeof aValue === "number" && typeof bValue === "number") {
+            return value === "asc" ? bValue - aValue : aValue - bValue;
+        }
+
+        //if a is greater than b, return 1, if a is less than b, return -1, else return 0
+        //the return value is inverted if descending
+        if (aValue.toLowerCase().trim().replace(/ /g, "") < bValue.toLowerCase().trim().replace(/ /g, "")) {
+            return value === "asc" ? -1 : 1;
+        } else if (aValue.toLowerCase().replace(/ /g, "") > bValue.toLowerCase().trim().replace(/ /g, "")) {
+            return value === "asc" ? 1 : -1;
+        } else {
+            return 0;
+        }
+    });
+
+    setDisplayPaintings(sortedPaintings);
+};
 
   return (
     // Overall container for the genre view
@@ -53,7 +97,7 @@ const GenreView = () => {
       </div>
 
       {/* Overall component for when the specific gallery information */}
-      <div className="w-2/3 flex flex-col overflow-y-auto ">
+      <div className="w-2/3 flex flex-col h-full">
 
         {/* Using a ternerary operator to change the layout of whether or not the user has clicked on a genre from the Genre List.
          If the user has not clicked on a genre..displayPaintings will be null due to the clickedGenre function.  */}
@@ -66,8 +110,13 @@ const GenreView = () => {
           // If the user has clicked on a genre, display the clicked genre information and relavent paintings.
           <div>
             <GenreInfo data={displayGenre} />
-            <div className="flex-1 space-y-2 overflow-y-auto px-6 pb-6">
-              <GenrePaintings data={displayPaintings} />
+            {/* Table displaying the selected artists paintings */}
+            <div className="flex-5 bg-green-700 shadow-md rounded p-4 h-100 overflow-hidden">
+                <PaintingsTable
+                    paintings={displayPaintings}
+                    handleSort={handleSort}
+                    sort={sort}
+                />
             </div>
           </div>
         )}

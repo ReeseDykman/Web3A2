@@ -31,16 +31,16 @@ const ArtistsList = (props) => {
     };
 
     return (
-        <div className="flex-1 bg-gray-100 shadow-md rounded p-4 h-167 overflow-hidden">
+        <div className="bg-green-700 flex-1 bg-gray-100 shadow-md rounded p-4 h-167 overflow-hidden">
             {/* Input field for searching artists */}
             <input
                 onChange={handleSearch}
                 type="text"
                 placeholder="Search for an artist..."
-                className="w-full p-2 border border-gray-300 rounded mb-4"
+                className="w-full p-2 border border-gray-300 bg-green-100 rounded mb-4"
             />
             {/* List of artists displayed as list items */}
-            <ul className="list-none space-y-2 overflow-y-auto h-full">
+            <ul className="list-none space-y-2 overflow-y-auto h-full p-2">
                 {artistSearch.map((artist, index) => (
                     <ArtistListItem
                         key={artist.artistId ? `${artist.artistId}Li` : `${index}Li`}

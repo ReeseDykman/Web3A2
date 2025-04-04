@@ -45,7 +45,7 @@ const PaintingsModal = (props) => {
                 {toastMessage && <PaintingsToast message={toastMessage} />}
                 <div
                     onClick={(e) => e.stopPropagation}
-                    className={`container w-1/2 bg-white rounded-xl shadow p-6 transition-all overflow-y-auto ${
+                    className={`container w-1/2 bg-green-200 rounded-xl shadow p-6 transition-all overflow-y-auto ${
                         props.open ? "scale-100 opacity-100" : "scale-235 opacity-0"
                     }`}
                 >
@@ -71,14 +71,14 @@ const PaintingsModal = (props) => {
                             />
                             <button
                                 onClick={handleFavoriteClick}
-                                className="w-full text-center bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
+                                className="w-full text-center bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700"
                             >
                                 Add to Favorites
                             </button>
                             <a
                                 href={props.painting.museumLink}
                                 target="_blank"
-                                className="w-full text-center bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+                                className="w-full text-center bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 transition"
                             >
                                 Visit Museum
                             </a>
@@ -87,7 +87,7 @@ const PaintingsModal = (props) => {
                                 <a
                                     href={props.painting.wikiLink}
                                     target="_blank"
-                                    className="w-full text-center bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+                                    className="w-full text-center bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 transition"
                                 >
                                     Visit Wiki Page
                                 </a>
@@ -113,7 +113,7 @@ const PaintingsModal = (props) => {
                                 <p className="text-xs text-gray-400">{props.painting.copyrightText}</p>
                                 <button
                                     onClick={props.onClose}
-                                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700"
+                                    className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700"
                                 >
                                     close
                                 </button>
