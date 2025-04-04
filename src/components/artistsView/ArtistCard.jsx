@@ -31,7 +31,7 @@ const ArtistCard = (props) => {
     };
 
     return (
-        <div className="flex-3 bg-gray-100 shadow-md rounded p-6 h-167 overflow-y-auto">
+        <div className="flex-3 bg-green-100 shadow-md rounded p-6 h-167 overflow-y-auto">
             {/* Toast message appears when add to favorites is clicked */}
             {toastMessage && <PaintingsToast message={toastMessage} />}
 
@@ -85,14 +85,14 @@ const ArtistCard = (props) => {
                     <a
                         href={selectedArtist.artistLink}
                         target="_blank"
-                        className="bg-blue-500 text-white px-6 py-2 rounded shadow hover:bg-blue-600 hover:underline w-48 text-center"
+                        className="bg-green-500 text-white px-6 py-2 rounded shadow hover:bg-blue-600 hover:underline w-48 text-center"
                     >
                         More about {selectedArtist.firstName}
                     </a>
 
                     {/* Button to add artist to favorites */}
                     <button
-                        className="bg-blue-500 text-white px-6 py-2 rounded shadow hover:bg-blue-600 hover:underline w-48"
+                        className="bg-green-500 text-white px-6 py-2 rounded shadow hover:bg-blue-600 hover:underline w-48"
                         onClick={() => handleFavorite(selectedArtist)}
                     >
                         Add to Favorites

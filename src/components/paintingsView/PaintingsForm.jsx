@@ -218,13 +218,13 @@ const PaintingsForm = (props) => {
             <div className="flex flex-col mt-4">
                 <button
                     type="submit"
-                    className="bg-green-500 hover:bg-blue-300 text-white rounded p-2 mt-4"
+                    className="bg-green-500 hover:bg-green-300 hover:text-black text-white rounded p-2 mt-4"
                 >
                     Submit
                 </button>
                 <button
                     onClick={handleReset}
-                    className="bg-gray-500 hover:bg-gray-300 text-white rounded p-2 mt-4"
+                    className="bg-gray-500 hover:bg-green-300 hover:text-black text-white rounded p-2 mt-4"
                 >
                     Reset
                 </button>

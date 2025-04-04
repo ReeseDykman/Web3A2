@@ -88,7 +88,7 @@ const ArtistsView = () => {
             />
 
             {/* Table displaying the selected artists paintings */}
-            <div className="flex-5 bg-gray-100 shadow-md rounded p-4 h-167 overflow-hidden">
+            <div className="flex-5 bg-green-700 shadow-md rounded p-4 h-167 overflow-hidden">
                 <PaintingsTable
                     paintings={artistPaintings}
                     handleSort={handleSort}
