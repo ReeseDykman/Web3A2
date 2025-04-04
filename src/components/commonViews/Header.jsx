@@ -2,10 +2,11 @@
 // Description: This component is used to display the header of the application. 
 
 import { NavLink} from 'react-router-dom';
-import { useContext, useState } from 'react';
+import { useContext, useState} from 'react';
 import { GalleriesFavoritesContext } from "../../App.jsx";
 import { ArtistsFavoritesContext } from "../../App.jsx";
 import { PaintingsFavoritesContext } from "../../App.jsx";
+import FavoritesModal from './FavoritesModal.jsx';
 
 const Navbar = () => {
     
@@ -15,33 +16,28 @@ const Navbar = () => {
     const { artistsFavorites } = useContext(ArtistsFavoritesContext);
     const { paintingsFavorites } = useContext(PaintingsFavoritesContext);
 
-    // State to manage the alert message
-    const [alertMessage, setAlertMessage] = useState("");
+    const [modalOpen, setModalOpen] = useState(false);
 
-    // Function to handle the click event on the favorites link
-    const handleFavoritesClick = (e) => {
 
+    // Checks if there are favorites
+    const favoritesPopulated = () => {
         //  Checking if the favorites arrays are empty
         if (galleryFavorites.length === 0 && artistsFavorites.length === 0 && paintingsFavorites.length === 0) {
-            // Prevent the click
-            e.preventDefault();
-
-            // Show set the alert message to alert the user that 
-            setAlertMessage("All favorites are empty...please add to access screen!");
-
-            // Set a timeout to clear the alert message after 3 seconds
-            setTimeout(() => {
-                setAlertMessage("");
-            }, 3000);
+            return false; 
         }
+        return true; // If any of the favorites arrays are not empty, return true
     };
 
+    const handleFavorites = (e) => {
+        e.preventDefault();
+        setModalOpen(true); // Open the modal when the button is clicked
+    }
 
     return (
         // div container to hold the navbar and alert message
         <div>
         {/* The overall container for the navbar */}
-            <nav className="bg-green-700 p-4 text-white flex items-center justify-between">
+            <nav className="bg-green-700 p-4 text-white flex flex-row items-center align-center justify-between">
                 {/* The logo and title */}
                 <img src="Music_logo.png" alt="Music Logo" className="h-30" />
                 <div className="text-2xl">
@@ -49,7 +45,7 @@ const Navbar = () => {
                 </div>
 
                 {/* Overall container for the tab buttons to be changed */}
-                <ul className="flex gap-2">
+                <ul className="flex gap-2 items-center justify-center">
                     {/* The different links to the different pages */}
                     <li>
                         <NavLink to="/paintings" className="text-white px-3 py-2 rounded hover:bg-gray-200 hover:text-black">
@@ -72,10 +68,17 @@ const Navbar = () => {
                         </NavLink>
                     </li>
                     <li>
-                        {/* Favorites navLink whick uses the onClick event handler to deny the user access to the tab if all favorites are empty */}
-                        <NavLink to="/favorites" onClick={handleFavoritesClick} className="text-white px-3 py-2 rounded hover:bg-gray-200 hover:text-black" id="favBtn">
+                        <button
+                            onClick={handleFavorites}
+                            disabled={!favoritesPopulated()}
+                            className={`px-3 py-2 rounded ${
+                                favoritesPopulated()
+                                    ? "text-white hover:bg-gray-200 hover:text-black"
+                                    : "text-gray-400 cursor-not-allowed"
+                            }`}
+                        >
                             Favorites
-                        </NavLink>
+                        </button>
                     </li>
                     <li>
                         <NavLink to="/about" className="text-white px-3 py-2 rounded hover:bg-gray-200 hover:text-black" >
@@ -84,14 +87,7 @@ const Navbar = () => {
                     </li>
                 </ul>
             </nav>
-            {/* Alert message for empty favorites */}
-            {alertMessage && (
-                <div className="fixed inset-0 flex items-center justify-center ">
-                    <div className="bg-yellow-400 text-black px-6 py-3 rounded shadow-lg text-lg font-medium">
-                        {alertMessage}
-                    </div>
-                </div>
-            )}
+            <FavoritesModal open={modalOpen} onClose={() => setModalOpen(false)} />
         </div>
 
     );

@@ -9,7 +9,6 @@ import ArtistsView from './components/artistsView/artistsView.jsx';
 import PaintingsView from './components/paintingsView/PaintingsView.jsx';
 import supabase from './scripts/supabaseClient.js';
 import AboutView from './components/commonViews/AboutView.jsx';
-import FavoritesView from './components/commonViews/FavoritesView.jsx';
 
 // Cteating contexts for all the data needed to be used in the app
 export const ArtistsContext = createContext();
@@ -202,8 +201,6 @@ function App() {
                           <Route path="/paintings"
                             element={loggedIn ? <PaintingsView /> : (<Navigate to="/login" />)} />
                           <Route path="/about" element={loggedIn ? <AboutView /> : (
-                            <Navigate to="/login" />)} />
-                          <Route path="/favorites" element={loggedIn ? <FavoritesView /> : (
                             <Navigate to="/login" />)} />
                           <Route path="*" element={<Navigate to="/login" />} />
                         </Routes>
