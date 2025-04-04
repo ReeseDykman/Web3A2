@@ -8,7 +8,7 @@ const PaintingsTableRow = (props) => {
 
     return (
         <tr
-            className="bg-white w-full h-full hover:bg-gray-100 hover:shadow-md transition duration-200"
+            className="bg-green-200 w-full h-full hover:bg-green-800 hover:text-white hover:shadow-md transition duration-200"
             onClick={handleRowClick}
         >
             {/* Painting image */}

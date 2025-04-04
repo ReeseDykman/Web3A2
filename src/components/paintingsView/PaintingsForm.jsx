@@ -95,7 +95,7 @@ const PaintingsForm = (props) => {
     };
 
     return (
-        <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
+        <form className="bg-green-200 shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
             <h2 className="text-2xl font-bold mb-4">Painting Filters</h2>
             <div className="grid grid-cols-4 gap-4 items-center">
                 {/* Title filter */}
@@ -117,7 +117,7 @@ const PaintingsForm = (props) => {
                     onChange={handleTextChange}
                     type="text"
                     id="title"
-                    className="disabled:bg-gray-500 disabled:opacity-7 border border-gray-300 rounded p-2 w-full col-span-3"
+                    className="bg-green-100 disabled:bg-gray-500 disabled:opacity-7 border border-gray-300 rounded p-2 w-full col-span-3"
                 />
 
                 {/* Artist filter */}
@@ -137,7 +137,7 @@ const PaintingsForm = (props) => {
                     disabled={radioSelection !== "artist"}
                     onChange={handleTextChange}
                     id="artist"
-                    className="disabled:bg-gray-500 disabled:opacity-7 border border-gray-300 rounded p-2 w-full col-span-3"
+                    className="bg-green-100 disabled:bg-gray-500 disabled:opacity-7 border border-gray-300 rounded p-2 w-full col-span-3"
                 >
                     <option disabled={artist !== ""}>Select an artist</option>
                     {artists.map((artist, index) => (
@@ -167,7 +167,7 @@ const PaintingsForm = (props) => {
                     disabled={radioSelection !== "gallery"}
                     onChange={handleTextChange}
                     id="gallery"
-                    className="disabled:bg-gray-500 disabled:opacity-7 border border-gray-300 rounded p-2 w-full col-span-3"
+                    className="bg-green-100 disabled:bg-gray-500 disabled:opacity-7 border border-gray-300 rounded p-2 w-full col-span-3"
                 >
                     <option disabled={gallery !== ""}>Select a gallery</option>
                     {galleries.map((gallery, index) => (
@@ -200,7 +200,7 @@ const PaintingsForm = (props) => {
                         type="number"
                         id="year-min"
                         placeholder="Min"
-                        className="disabled:bg-gray-500 disabled:opacity-7 border border-gray-300 rounded p-2 w-full"
+                        className="bg-green-100 disabled:bg-gray-500 disabled:opacity-7 border border-gray-300 rounded p-2 w-full"
                     />
                     <input
                         value={yearMax}
@@ -209,7 +209,7 @@ const PaintingsForm = (props) => {
                         type="number"
                         id="year-max"
                         placeholder="Max"
-                        className="disabled:bg-gray-500 disabled:opacity-7 border border-gray-300 rounded p-2 w-full"
+                        className="bg-green-100 disabled:bg-gray-500 disabled:opacity-7 border border-gray-300 rounded p-2 w-full"
                     />
                 </div>
             </div>
@@ -218,7 +218,7 @@ const PaintingsForm = (props) => {
             <div className="flex flex-col mt-4">
                 <button
                     type="submit"
-                    className="bg-blue-500 hover:bg-blue-300 text-white rounded p-2 mt-4"
+                    className="bg-green-500 hover:bg-blue-300 text-white rounded p-2 mt-4"
                 >
                     Submit
                 </button>
