@@ -11,10 +11,11 @@ const ArtistsView = () => {
     const [selectedArtist, setSelectedArtist] = useState(null);
     const [sort, setSort] = useState(new filter("Title", "asc"));
 
+    // Handles sorting of paintings based on the selected field and order
     const handleSort = ({ field, value }, paintings) => {
         setSort(new filter(field, value));
 
-        // Returns the proper field in the JSON
+        // Maps fields to their corresponding values in the painting object
         const fieldMapping = {
             title: (painting) => painting.title,
             artist: (painting) => `${painting.Artists.firstName} ${painting.Artists.lastName}`,
@@ -22,10 +23,12 @@ const ArtistsView = () => {
             year: (painting) => painting.yearOfWork,
         };
 
+        // Use current artistPaintings if no paintings are provided
         if (!paintings) {
             paintings = [...artistPaintings];
         }
 
+        // Sort paintings based on the selected field and order
         const sortedPaintings = paintings.sort((a, b) => {
             let aValue, bValue;
 
@@ -33,12 +36,12 @@ const ArtistsView = () => {
             aValue = fieldMapping[field.toLowerCase()](a) || "";
             bValue = fieldMapping[field.toLowerCase()](b) || "";
 
-            // Years are numbers, so we need to handle them differently but we can compare them directly
+            // Handle numeric comparison for years
             if (typeof aValue === "number" && typeof bValue === "number") {
                 return value === "asc" ? bValue - aValue : aValue - bValue;
             }
 
-            // Compare strings
+            // Handle string comparison
             if (
                 aValue.toLowerCase().trim().replace(/ /g, "") <
                 bValue.toLowerCase().trim().replace(/ /g, "")
@@ -57,6 +60,7 @@ const ArtistsView = () => {
         setArtistPaintings(sortedPaintings);
     };
 
+    // Filters paintings by the selected artist
     const handleArtistClick = (artist) => {
         setSelectedArtist(artist);
         const toFilter = [...paintings];
@@ -66,6 +70,7 @@ const ArtistsView = () => {
         handleSort(sort, filteredPaintings);
     };
 
+    // Resets to the full list of paintings when back button is clicked
     const handleBackButton = () => {
         setSelectedArtist(null);
         handleSort(sort, [...paintings]);
@@ -73,13 +78,16 @@ const ArtistsView = () => {
 
     return (
         <section className="w-full h-full mx-auto p-4 flex flex-col md:flex-row gap-4 justify-between">
+            {/* List of artists */}
             <ArtistsList handleArtistClick={handleArtistClick} />
 
+            {/* Card displaying selected artist details */}
             <ArtistCard
                 selectedArtist={selectedArtist}
                 handleBackButton={handleBackButton}
             />
 
+            {/* Table displaying the selected artists paintings */}
             <div className="flex-5 bg-gray-100 shadow-md rounded p-4 h-167 overflow-hidden">
                 <PaintingsTable
                     paintings={artistPaintings}

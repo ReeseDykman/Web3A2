@@ -34,6 +34,7 @@ const PaintingsModal = (props) => {
     if (props.painting) {
         return (
             // overlay div to cover the screen, user can click anywhere to close the modal
+            //// MODAL STYLING AND HELP FROM "YOUR CODE LAB" YOUTUBE: https://www.youtube.com/watch?v=dEGbXY-8YtU&ab_channel=YourCodeLab
             <div
                 onClick={props.onClose}
                 className={`flex justify-center items-center fixed inset-0 justify-center items-center transition-colors ${
@@ -81,7 +82,7 @@ const PaintingsModal = (props) => {
                             >
                                 Visit Museum
                             </a>
-                            {/* Wiki link if available */}
+                            {/* Wiki link only if available */}
                             {props.painting.wikiLink && (
                                 <a
                                     href={props.painting.wikiLink}
