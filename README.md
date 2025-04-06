@@ -3,6 +3,8 @@
 ## **Overview**
 This project is a single-page application designed to assist art enthusiasts in exploring detailed information about various genres of art, galleries, artists, and paintings from around the world. The application provides an interface for browsing, filtering, and managing favorites.
 
+Deployed URL: [Web3A2 on GitHub Pages](https://reesedykman.github.io/Web3A2/)
+
 
 ## **Authors**
 - **Reese Dykman**  
