@@ -50,7 +50,7 @@ const FavoritesModal = (props) => {
     // The overall container for the favorites section.
     <div
         onClick={props.onClose} // Clicking outside the modal will close it
-        className={`fixed inset-0 flex justify-center items-center bg-black/50 transition-opacity ${
+        className={`fixed inset-0 flex justify-center items-center bg-black/50 transition-opacity z-100 ${
             props.open ? "visible opacity-100" : "invisible opacity-0"
         }`}
     >

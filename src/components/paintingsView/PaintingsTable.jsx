@@ -22,7 +22,7 @@ const PaintingsTable = (props) => {
     };
 
     return (
-        <div className="h-full overflow-y-auto overflow-x-autos">
+        <div className="h-full overflow-y-auto overflow-x-auto">
             <table className="w-full border-collapse">
                 <thead className="bg-green-100">
                     <tr>

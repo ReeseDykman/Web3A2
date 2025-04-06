@@ -85,14 +85,14 @@ const ArtistCard = (props) => {
                     <a
                         href={selectedArtist.artistLink}
                         target="_blank"
-                        className="bg-green-500 text-white px-6 py-2 rounded shadow hover:bg-blue-600 hover:underline w-48 text-center"
+                        className="bg-green-500 hover:bg-green-300 hover:text-black text-white rounded px-6 py-2 mt-4 w-48 text-center"
                     >
                         More about {selectedArtist.firstName}
                     </a>
 
                     {/* Button to add artist to favorites */}
                     <button
-                        className="bg-green-500 text-white px-6 py-2 rounded shadow hover:bg-blue-600 hover:underline w-48"
+                        className="bg-green-500 hover:bg-green-300 hover:text-black text-white rounded px-6 py-2 mt-4 w-48"
                         onClick={() => handleFavorite(selectedArtist)}
                     >
                         Add to Favorites
@@ -100,7 +100,7 @@ const ArtistCard = (props) => {
 
                     {/* Back button */}
                     <button
-                        className="bg-gray-300 text-gray-700 px-6 py-2 rounded shadow hover:bg-gray-400 w-48"
+                        className="bg-gray-300 hover:bg-gray-400 text-gray-700 rounded px-6 py-2 mt-4 w-48"
                         onClick={() => props.handleBackButton()}
                     >
                         Back
