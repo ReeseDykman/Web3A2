@@ -19,22 +19,18 @@ const AboutView = () => {
                 <div className="m-2">
 
                     <p className="m-2">
-                        &nbsp; This app was made to help assist art enthusiasts find detailed information about genres of art, galleries, and paintings all around the world.
+                        &nbsp; This app was made to help assist art enthusiasts find detailed information about genres of art, galleries, and paintings 
+                        all around the world. 
 
                         <br />
                         <br />
 
-                        &nbsp; Made in a senior-level web development class, this application was built using <strong>React</strong>, <strong>Leaflet</strong> and <strong>Supabase</strong>.
-
-                        React is the library used to build the UI, Leaflet is used to display the gallery on an interactive map, and Supabase is used as the backend
-                        database to store and retrieve all relevant data.
-
-
-                        To allow for navigation around the app, React Router was used to enable the single-paged application effect.
-
-                        Furthermore, the useContext hook was used to limit the number of props being passed around the app. To update the page from a user query, a combination of the
-                        useState (save variables in a JSX file) and useEffect (do something if the state changed) React hooks were used. Lastly, to ensure responsiveness and save user
-                        favourites, local storage was implemented to ensure the user could access their favourites later and to reduce the number of pulls for the data from Supabase.
+                        &nbsp; React was the library used to build the UI and Leaflet was used to display the gallery on an interactive map. Most importantly however, 
+                        Supabase was used for the backend database to retrieve all relevant data for further processing (i.e. useState and localStorage).  To allow for navigation around the app, 
+                        React Router  was implemented to enable the single-paged application effect. Furthermore, the useContext hook was used to limit the number of
+                         props being passed around the app. To update the page from a user query, a combination of the useState (save variables in a JSX file) and 
+                         useEffect (do something if the state changes) React hooks were used. Lastly, to ensure responsiveness and save user favourites, local storage 
+                         was implemented to ensure the user could access their favourites later and to reduce the number of pulls for the data from Supabase.
                     </p>
                 </div>
 
