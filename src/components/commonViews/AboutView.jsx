@@ -56,6 +56,13 @@ const AboutView = () => {
 
                 <p className="m-2"> <a className="hover:text-blue-700" target="_blank" href="https://www.youtube.com/watch?v=dEGbXY-8YtU&ab_channel=YourCodeLab">&nbsp; YOUTUBE - YOUR CODE LAB : Build a Modal Component purely in ReactJS and TailwindCSS </a></p>
 
+                <h3 className="m-2 font-semibold">Icons and Images </h3>
+
+                <p className="m-2"> <a className="hover:text-blue-700" target="_blank" href="https://www.svgrepo.com/">&nbsp; Icons - SVG Repo </a></p>
+                <p className="m-2"> <a className="hover:text-blue-700" target="_blank" href="https://clipart-library.com/clip-art/artist-transparent-background-9.htm">&nbsp; Painting Logo - Clipart Library </a></p>
+                <p className="m-2"> <a className="hover:text-blue-700" target="_blank" href="https://www.artic.edu/artworks/18947/landscape">&nbsp; Login Splash Image </a></p>
+                
+
 
 
                 {/* Providing the viewers with the developers who made the SPA */}

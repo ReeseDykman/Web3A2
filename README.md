@@ -116,6 +116,10 @@ Deployed URL: [Web3A2 on GitHub Pages](https://reesedykman.github.io/Web3A2/)
 - **YouTube Tutorials**:
   - [React Leaflet Tutorial for Beginners (2023)](https://www.youtube.com/watch?v=jD6813wGdBA) by Alejandro AO.
   - [Build a Modal Component in ReactJS and TailwindCSS](https://www.youtube.com/watch?v=dEGbXY-8YtU) by Your Code Lab.
+- **Icons and Images**
+  - [Icons - SVGRepo](https://www.svgrepo.com/)
+  - [Login Hero Image](https://www.artic.edu/artworks/18947/landscape)
+  - [Art Pallete Logo](https://clipart-library.com/clip-art/artist-transparent-background-9.htm)
 
 ### **Acknowledgments**
 Special thanks to the our instructor Randy Connolly who taught us all we know!.
