@@ -39,7 +39,7 @@ const AboutView = () => {
 
                 {/* Code attribution */}
 
-                <h2 className="text-lg text-center font-semibold m-6 ">Links to code used: </h2>
+                <h2 className="text-lg text-center font-semibold m-6 ">Links to code used </h2>
 
                 <h3 className="m-2 font-semibold" >Page: Galleries - Gallery Info</h3>
                 <p className="m-2" ><a className="hover:text-blue-700" target="_blank" href="https://react-leaflet.js.org/docs/start-setup/">&nbsp; Assistance with Leaflet - Official documentation</a></p>
