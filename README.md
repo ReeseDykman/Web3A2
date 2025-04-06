@@ -3,7 +3,6 @@
 ## **Overview**
 This project is a single-page application designed to assist art enthusiasts in exploring detailed information about various genres of art, galleries, artists, and paintings from around the world. The application provides an interface for browsing, filtering, and managing favorites.
 
----
 
 ## **Authors**
 - **Reese Dykman**  
@@ -12,7 +11,6 @@ This project is a single-page application designed to assist art enthusiasts in 
 - **Christopher Nottingham**  
   Email: [cnott729@mtroyal.ca](mailto:cnott729@mtroyal.ca)
 
----
 
 ## **Purpose**
 This project was developed as part of a senior-level web development course. The primary goal was to create a functional and visually appealing application that demonstrates React web development including:
@@ -22,7 +20,6 @@ This project was developed as part of a senior-level web development course. The
 - Dynamic filtering and sorting of data.
 - Design using Tailwind CSS.
 
----
 
 ## **Features**
 - **Login System**: Template login system with pre-defined credentials.
@@ -31,7 +28,6 @@ This project was developed as part of a senior-level web development course. The
 - **Interactive Map**: View gallery locations using Leaflet maps.
 - **Dynamic Sorting**: Sort data by various fields such as title, artist, year, etc.
 
----
 
 ## **Technologies Used**
 ### **Frontend**
@@ -47,7 +43,6 @@ This project was developed as part of a senior-level web development course. The
 - **Vite**: For fast development and build processes.
 - **ESLint**: For linting and maintaining code quality.
 
----
 
 ## **Project Structure**
 The project is organized into the following key directories:
@@ -68,7 +63,6 @@ Contains utility scripts, such as:
 ### **3. `public`**
 Contains images.
 
----
 
 ## **How to Run the Project**
 ### **Prerequisites**
@@ -97,7 +91,6 @@ Contains images.
    http://localhost:5173
    ```
 
----
 
 ## **Deployment**
 The project is deployed to GitHub Pages. The deployment workflow is automated using GitHub Actions. The deployment configuration can be found in `.github/workflows/deploy.yaml`.
@@ -108,7 +101,6 @@ The project is deployed to GitHub Pages. The deployment workflow is automated us
 
 Deployed URL: [Web3A2 on GitHub Pages](https://reesedykman.github.io/Web3A2/)
 
----
 
 ## **Credits**
 ### **External Resources**
@@ -120,7 +112,6 @@ Deployed URL: [Web3A2 on GitHub Pages](https://reesedykman.github.io/Web3A2/)
 ### **Acknowledgments**
 Special thanks to the our instructor Randy Connolly who taught us all we know!.
 
----
 
 ## **Contact**
 For any questions or feedback, please reach out to the authors via email:
