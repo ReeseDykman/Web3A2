@@ -1,7 +1,7 @@
-# Web3A2 Project Documentation
+# Welcome to our Web3 Art Assignment!
 
 ## **Overview**
-This project is a single-page application (SPA) designed to assist art enthusiasts in exploring detailed information about various genres of art, galleries, artists, and paintings from around the world. The application provides an interface for browsing, filtering, and managing favorites.
+This project is a single-page application designed to assist art enthusiasts in exploring detailed information about various genres of art, galleries, artists, and paintings from around the world. The application provides an interface for browsing, filtering, and managing favorites.
 
 ---
 
@@ -15,7 +15,7 @@ This project is a single-page application (SPA) designed to assist art enthusias
 ---
 
 ## **Purpose**
-This project was developed as part of a senior-level web development course. The primary goal was to create a functional and visually appealing application that demonstrates advanced web development concepts, including:
+This project was developed as part of a senior-level web development course. The primary goal was to create a functional and visually appealing application that demonstrates React web development including:
 - Context management.
 - State management.
 - Integration with external APIs and databases (Supabase).
@@ -66,7 +66,7 @@ Contains utility scripts, such as:
 - **`filterFactory.js`**: For creating dynamic filters.
 
 ### **3. `public`**
-Contains static assets like images and other resources.
+Contains images.
 
 ---
 
@@ -118,7 +118,7 @@ Deployed URL: [Web3A2 on GitHub Pages](https://reesedykman.github.io/Web3A2/)
   - [Build a Modal Component in ReactJS and TailwindCSS](https://www.youtube.com/watch?v=dEGbXY-8YtU) by Your Code Lab.
 
 ### **Acknowledgments**
-Special thanks to the instructors and peers who provided guidance and feedback throughout the development process.
+Special thanks to the our instructor Randy Connolly who taught us all we know!.
 
 ---
 
