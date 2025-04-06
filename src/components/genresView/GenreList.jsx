@@ -1,40 +1,53 @@
-// Developer: Christopher Nottingham
-// Description: This component is used to display the list of genres in the Genre View sidebar.
 import GenreListItem from "./GenreListItem.jsx";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { GenresContext } from "../../App.jsx";
 
 const GenreList = (props) => {
-   
     const { genres } = useContext(GenresContext);
 
-    // Sort genres alphabetically by name
-    const sortedGenres = [...genres].sort((a, b) => {
-        return a.genreName.localeCompare(b.genreName);
-    });
+    // State to manage the filtered list of genres
+    const [filteredGenres, setFilteredGenres] = useState(genres);
 
-   return (
-// Container for the genres list section
-        <section className="p-6  space-y-6">
-            <div className=" p-4 bg-gray-400 text-black rounded-lg shadow-sm">
-                <h2 className="text-xl font-semibold mb-4">List of Genres</h2>
-                <ul className="space-y-2">
-                    {/* Using the map function to loop through and print all the genres */}
-                    {sortedGenres.map((g) => (
-                        <GenreListItem
-                            key={g.genreId}
-                            data={g}
-                            id={g.genreId}
-                            update={props.update}
-                        />
-                    ))}
-                </ul>
-            </div>
-        </section>
-     
-);
+    // Function to handle the search input and filter genres
+    const handleSearch = (e) => {
+        const searchTerm = e.target.value;
 
+        // If search term is empty, reset to the full list of genres
+        if (searchTerm === "") {
+            setFilteredGenres(genres);
+            return;
+        }
+
+        // Filter genres based on the genre name starting with the search term
+        const filtered = genres.filter((genre) =>
+            genre.genreName.toLowerCase().startsWith(searchTerm.toLowerCase())
+        );
+
+        // Update the state with the filtered list
+        setFilteredGenres(filtered);
+    };
+
+    return (
+        <div className="bg-green-700 flex-1 bg-gray-100 shadow-md rounded p-4 h-167 overflow-hidden">
+            {/* Input field for searching genres */}
+            <input
+                onChange={handleSearch}
+                type="text"
+                placeholder="Search for a genre..."
+                className="w-full p-2 border border-gray-300 bg-green-100 rounded mb-4"
+            />
+            {/* List of genres displayed as list items */}
+            <ul className="list-none space-y-2 overflow-y-auto h-full p-2">
+                {filteredGenres.map((genre) => (
+                    <GenreListItem
+                        key={genre.genreId}
+                        data={genre}
+                        update={props.update}
+                    />
+                ))}
+            </ul>
+        </div>
+    );
 };
 
-// Exporting the GenreList component
 export default GenreList;

@@ -32,26 +32,34 @@ const PaintingsModal = (props) => {
     };
 
     if (props.painting) {
+        // Parse jsonAnnotations to extract dominant colors
+        let dominantColors = [];
+        try {
+            const parsedAnnotations = JSON.parse(props.painting.jsonAnnotations);
+            dominantColors = parsedAnnotations.dominantColors || [];
+        } catch (error) {
+            console.error("Error parsing jsonAnnotations:", error);
+        }
+
         return (
-            // overlay div to cover the screen, user can click anywhere to close the modal
-            //// MODAL STYLING AND HELP FROM "YOUR CODE LAB" YOUTUBE: https://www.youtube.com/watch?v=dEGbXY-8YtU&ab_channel=YourCodeLab
             <div
                 onClick={props.onClose}
-                className={`flex justify-center items-center fixed inset-0 justify-center items-center transition-colors ${
+                className={`flex justify-center items-center fixed inset-0 transition-colors ${
                     props.open ? "visible bg-black/20" : "invisible"
                 }`}
             >
                 {/* Toast message appears when add to favorites is clicked */}
                 {toastMessage && <PaintingsToast message={toastMessage} />}
+                {/* Modal Content */}
                 <div
-                    onClick={(e) => e.stopPropagation}
-                    className={`container w-1/2 bg-green-200 rounded-xl shadow p-6 transition-all overflow-y-auto ${
+                    onClick={(e) => e.stopPropagation()}
+                    className={`container w-1/2 bg-green-200 rounded-xl shadow p-6 transition-all overflow-y-auto relative ${
                         props.open ? "scale-100 opacity-100" : "scale-235 opacity-0"
                     }`}
                 >
                     <div className="flex flex-row gap-4 items-center justify-between">
                         {/* Left section: Image and buttons */}
-                        <div className="flex flex-col gap-4 mr-5 flex-shrink-0 w-40 items-center justofy-center">
+                        <div className="flex flex-col gap-4 mr-5 flex-shrink-0 w-40 items-center justify-center">
                             {isLoading && (
                                 <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
                             )}
@@ -93,8 +101,9 @@ const PaintingsModal = (props) => {
                                 </a>
                             )}
                         </div>
+
                         {/* Right section: Painting details */}
-                        <div className="flex flex-col gap-4 flex-grow">
+                        <div className="flex flex-col gap-4 flex-grow relative pb-16">
                             <h1 className="text-2xl font-bold">{props.painting.title}</h1>
                             <h2 className="text-lg font-semibold">{`${props.painting.Artists.firstName} ${props.painting.Artists.lastName}`}</h2>
                             <h3 className="text-lg font-semibold">{props.painting.yearOfWork}</h3>
@@ -103,22 +112,44 @@ const PaintingsModal = (props) => {
                                 {props.painting.Galleries.galleryName}, {props.painting.Galleries.galleryCity}
                             </p>
                             <p>
-                                {props.painting.description == ""
+                                {props.painting.description === ""
                                     ? "No description available."
                                     : props.painting.description}
                             </p>
                             <p>{props.painting.medium}</p>
-                            <div className="flex flex-row gap-4 items-center justify-between">
-                                <p>{`${props.painting.width} x ${props.painting.height}`}</p>
-                                <p className="text-xs text-gray-400">{props.painting.copyrightText}</p>
-                                <button
-                                    onClick={props.onClose}
-                                    className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700"
-                                >
-                                    close
-                                </button>
+                            <p>{`${props.painting.width} x ${props.painting.height}`}</p>
+
+                            {/* Dominant Colors Section */}
+                            <div className="mt-4">
+                                <h4 className="text-lg font-semibold">Dominant Colors</h4>
+                                <div className="flex flex-row gap-2 mt-2">
+                                    {dominantColors.length > 0 ? (
+                                        dominantColors.map((annotation, index) => (
+                                            <div
+                                                key={index}
+                                                className="w-8 h-8 rounded"
+                                                style={{
+                                                    backgroundColor: `rgb(${annotation.color.red}, ${annotation.color.green}, ${annotation.color.blue})`,
+                                                }}
+                                            ></div>
+                                        ))
+                                    ) : (
+                                        <p className="text-sm text-gray-500">No dominant colors available.</p>
+                                    )}
+                                </div>
                             </div>
                         </div>
+                    </div>
+
+                    {/* Footer Section */}
+                    <div className="absolute bottom-0 left-0 right-0 flex justify-between items-center p-4 bg-green-200">
+                        <p className="text-xs text-gray-400">{props.painting.copyrightText}</p>
+                        <button
+                            onClick={props.onClose}
+                            className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700"
+                        >
+                            Close
+                        </button>
                     </div>
                 </div>
             </div>

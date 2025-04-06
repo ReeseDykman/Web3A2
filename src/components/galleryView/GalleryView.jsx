@@ -19,7 +19,7 @@ const GalleryView = () => {
 
   // Creating a state variables to keep track of the selected gallery and the respective paintings to display
   const [selectedGallery, setSelectedGallery] = useState([])
-  const [galleryPaintings, setGalleryPaintings] = useState([])
+  const [galleryPaintings, setGalleryPaintings] = useState(paintings)
   const [sort, setSort] = useState(new filter("Title", "asc"));
 
 

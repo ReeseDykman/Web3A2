@@ -39,7 +39,7 @@ const Navbar = () => {
         {/* The overall container for the navbar */}
             <nav className="bg-green-700 p-4 text-white flex flex-row items-center align-center justify-between">
                 {/* The logo and title */}
-                <img src="Music_logo.png" alt="Music Logo" className="h-30" />
+                <img src="logo.png" alt="Art Logo" className="h-30" />
                 <div className="text-2xl">
                     Art Database Project
                 </div>

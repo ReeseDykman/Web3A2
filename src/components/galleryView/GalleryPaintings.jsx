@@ -72,7 +72,7 @@ const GalleryPaintings = (props) => {
             </div>
 
             <div className="p-4 border  text-black rounded ">
-                {/* Using the ternary operator to either show a simple message if nothing has no gallery has been clicked */}
+                {/* Show a simple message if nothing has no gallery has been clicked */}
                 {props.paintings.length === 0 ? (
                     <p className="text-black">No paintings available.</p>
                 ) : (

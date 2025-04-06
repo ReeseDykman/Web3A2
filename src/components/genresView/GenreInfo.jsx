@@ -1,20 +1,27 @@
 // Developer: Christopher Nottingham
-// Description: This component displays the genre information for the selected genre passeed down with props in the Genre View.
+// Description: This component displays the genre information for the selected genre passed down with props in the Genre View.
+
 const GenreInfo = (props) => {
     return (
-        // Using the ternary operator to check if there is a genre selected
-        // If there is no genre selected then display nothing
-        // If there is a genre selected then display the genre info
-        props.data.length == 0 ? (
-            <div> </div>
-        ) : (
-            // Displaying the genre info if there is a genre selected 
-            <div className="flex text-black m-6 p-2 rounded-lg bg-gray-400 flex-col gap-4">
-                <h1 className="text-2xl font-bold">{props.data.genreName}</h1>
-                <p> Description: {props.data.description}</p>
-            </div>
-        )
-    )
-}
+        <div className="flex-3 bg-green-100 shadow-md rounded p-6 h-167 overflow-y-auto">
+            {/* Conditional rendering for placeholder or genre details */}
+            {!props.data ? (
+                <div className="flex flex-col items-center gap-4 text-center">
+                    <h1 className="text-2xl font-bold">A Genre Will Show Here</h1>
+                    <p className="text-gray-500">Select a genre to get started!</p>
+                </div>
+            ) : (
+                <div className="flex flex-col items-center gap-6 h-full">
+                    {/* Genre name */}
+                    <h1 className="text-3xl font-bold text-center">{props.data.genreName}</h1>
+
+                    {/* Genre description */}
+                    <p className="text-gray-600 text-center">{props.data.description}</p>
+                </div>
+            )}
+        </div>
+    );
+};
+
 // Exporting the GenreInfo component
 export default GenreInfo;
