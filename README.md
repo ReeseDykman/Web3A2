@@ -1,9 +1,10 @@
-# Web3A2 Project Documentation
+# Welcome to our Web3 Art Assignment!
 
 ## **Overview**
-This project is a single-page application (SPA) designed to assist art enthusiasts in exploring detailed information about various genres of art, galleries, artists, and paintings from around the world. The application provides an interface for browsing, filtering, and managing favorites.
+This project is a single-page application designed to assist art enthusiasts in exploring detailed information about various genres of art, galleries, artists, and paintings from around the world. The application provides an interface for browsing, filtering, and managing favorites.
 
----
+Deployed URL: [Web3A2 on GitHub Pages](https://reesedykman.github.io/Web3A2/)
+
 
 ## **Authors**
 - **Reese Dykman**  
@@ -12,17 +13,15 @@ This project is a single-page application (SPA) designed to assist art enthusias
 - **Christopher Nottingham**  
   Email: [cnott729@mtroyal.ca](mailto:cnott729@mtroyal.ca)
 
----
 
 ## **Purpose**
-This project was developed as part of a senior-level web development course. The primary goal was to create a functional and visually appealing application that demonstrates advanced web development concepts, including:
+This project was developed as part of a senior-level web development course. The primary goal was to create a functional and visually appealing application that demonstrates React web development including:
 - Context management.
 - State management.
 - Integration with external APIs and databases (Supabase).
 - Dynamic filtering and sorting of data.
 - Design using Tailwind CSS.
 
----
 
 ## **Features**
 - **Login System**: Template login system with pre-defined credentials.
@@ -31,7 +30,6 @@ This project was developed as part of a senior-level web development course. The
 - **Interactive Map**: View gallery locations using Leaflet maps.
 - **Dynamic Sorting**: Sort data by various fields such as title, artist, year, etc.
 
----
 
 ## **Technologies Used**
 ### **Frontend**
@@ -47,7 +45,6 @@ This project was developed as part of a senior-level web development course. The
 - **Vite**: For fast development and build processes.
 - **ESLint**: For linting and maintaining code quality.
 
----
 
 ## **Project Structure**
 The project is organized into the following key directories:
@@ -66,9 +63,8 @@ Contains utility scripts, such as:
 - **`filterFactory.js`**: For creating dynamic filters.
 
 ### **3. `public`**
-Contains static assets like images and other resources.
+Contains images.
 
----
 
 ## **How to Run the Project**
 ### **Prerequisites**
@@ -97,7 +93,6 @@ Contains static assets like images and other resources.
    http://localhost:5173
    ```
 
----
 
 ## **Deployment**
 The project is deployed to GitHub Pages. The deployment workflow is automated using GitHub Actions. The deployment configuration can be found in `.github/workflows/deploy.yaml`.
@@ -108,7 +103,6 @@ The project is deployed to GitHub Pages. The deployment workflow is automated us
 
 Deployed URL: [Web3A2 on GitHub Pages](https://reesedykman.github.io/Web3A2/)
 
----
 
 ## **Credits**
 ### **External Resources**
@@ -116,11 +110,14 @@ Deployed URL: [Web3A2 on GitHub Pages](https://reesedykman.github.io/Web3A2/)
 - **YouTube Tutorials**:
   - [React Leaflet Tutorial for Beginners (2023)](https://www.youtube.com/watch?v=jD6813wGdBA) by Alejandro AO.
   - [Build a Modal Component in ReactJS and TailwindCSS](https://www.youtube.com/watch?v=dEGbXY-8YtU) by Your Code Lab.
+- **Icons and Images**
+  - [Icons - SVGRepo](https://www.svgrepo.com/)
+  - [Login Hero Image](https://www.artic.edu/artworks/18947/landscape)
+  - [Art Pallete Logo](https://clipart-library.com/clip-art/artist-transparent-background-9.htm)
 
 ### **Acknowledgments**
-Special thanks to the instructors and peers who provided guidance and feedback throughout the development process.
+Special thanks to the our instructor Randy Connolly who taught us all we know!.
 
----
 
 ## **Contact**
 For any questions or feedback, please reach out to the authors via email:
