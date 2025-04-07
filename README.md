@@ -116,7 +116,7 @@ Deployed URL: [Web3A2 on GitHub Pages](https://reesedykman.github.io/Web3A2/)
   - [Art Pallete Logo](https://clipart-library.com/clip-art/artist-transparent-background-9.htm)
 
 ### **Acknowledgments**
-Special thanks to the our instructor Randy Connolly who taught us all we know!
+Special thanks to our instructor Randy Connolly, who taught us all we know!
 
 
 ## **Contact**
